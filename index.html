@@ -399,9 +399,7 @@
   /* --- RSVP --- */
   .panel { display: none; }
   .panel.active { display: block; animation: fadeIn 0.5s ease; }
-  /* Decreased font size for "Will you join us?" heading */
-  .rsvp-heading { font-family: var(--premium-script); font-size: clamp(38px, 9vw, 46px); color: var(--gold); margin: 0 0 6px; line-height: 1.05; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-  .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+  .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 6px; }
   .field-label { text-align: left; font-family: var(--premium-body); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px; color: var(--gold-soft); }
   .field-input { width: 100%; padding: 15px 14px; font-family: var(--premium-body); font-size: 16px; border: 1px solid rgba(203,161,83,0.3); border-radius: 6px; margin-bottom: 18px; background: rgba(255,255,255,0.06); color: var(--bg-cream); transition: border-color 0.3s; }
   .field-input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.1); }
@@ -627,7 +625,7 @@
 
       <div class="card fade-in" style="max-width: 460px; margin: 22px auto 0; padding: 38px 22px;">
         <div id="panel-ask" class="panel active">
-          <h2 class="rsvp-heading shimmer-gold">Will you join us?</h2>
+          <p style="font-family: var(--premium-display); font-size: 26px; font-style: italic; color: var(--gold-soft); margin-bottom: 22px;">We hope you can celebrate with us.</p>
           <div class="rsvp-buttons">
             <button class="plaque-btn filled" onclick="showPanel('panel-name')">Yes, I'll be there</button>
             <button class="plaque-btn outline" onclick="showPanel('panel-decline')">No, I can't make it</button>
@@ -639,8 +637,8 @@
         </div>
 
         <div id="panel-name" class="panel">
-          <h2 class="rsvp-heading shimmer-gold" style="font-size: clamp(38px, 10vw, 46px);">We're so glad!</h2>
-          <p style="margin-bottom: 24px; font-size:15.5px; color: rgba(249,248,243,0.85);">Let us know who's joining the celebration.</p>
+          <h2 class="rsvp-heading shimmer-gold" style="font-family: var(--premium-script); font-size: clamp(44px, 11vw, 52px); font-weight: normal; margin-bottom: 6px;">We're so glad!</h2>
+          <p style="margin-bottom: 22px; font-size:15px; color: rgba(249,248,243,0.85);">Let us know who's joining the celebration.</p>
           <div style="text-align: left;">
             <div class="field-label">Your Name</div>
             <input id="guestName" class="field-input" type="text" placeholder="Enter full name" required>
