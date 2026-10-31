@@ -793,7 +793,7 @@
         .catch(function () { $('sendError').textContent = 'Could not send. Please check your connection and try again.'; })
         .then(function () { btn.disabled = false; btn.textContent = 'Confirm RSVP'; });
     } else if (CONFIG.whatsappNumber) {
-      var msg = 'Hi! This is ' + name + '. I will be attending the wedding of Aiswarya & Amith on 20 December 2026. Number of guests: ' + guests + '.';
+      var msg = 'Hi! This is ' + name + '.I will be attending the wedding of Aiswarya & Amith on 20 December 2026. Number of guests: ' + guests + '.';
       window.open('https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
       showPanel('panel-confirmed');
     } else {
