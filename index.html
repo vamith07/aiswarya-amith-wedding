@@ -4,50 +4,72 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
 <meta name="theme-color" content="#1F3F34">
-<title>Aiswarya & Amith | Wedding Invitation</title>
+<meta name="color-scheme" content="light">
+<meta name="format-detection" content="telephone=no">
+<title>Aiswarya &amp; Amith | Wedding Invitation</title>
+<meta name="description" content="Aiswarya &amp; Amith are getting married on Sunday, 20 December 2026 at Sangamam Auditorium, Thalassery. Join us in celebrating the start of our forever.">
 
-<!-- Premium Typography -->
+<!-- Link preview (WhatsApp, Facebook, iMessage, Telegram) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aiswarya &amp; Amith | Wedding Invitation">
+<meta property="og:description" content="You're invited! Sunday, 20 December 2026 · Thalassery, Kerala. Tap to open our invitation.">
+<meta property="og:url" content="https://vamith07.github.io/aiswarya-amith-wedding/">
+<meta property="og:image" content="https://vamith07.github.io/aiswarya-amith-wedding/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Aiswarya &amp; Amith">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aiswarya &amp; Amith | Wedding Invitation">
+<meta name="twitter:description" content="You're invited! Sunday, 20 December 2026 · Thalassery, Kerala.">
+<meta name="twitter:image" content="https://vamith07.github.io/aiswarya-amith-wedding/og-image.jpg">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F3F34'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' font-style='italic' text-anchor='middle' fill='%23CBA153'%3EA%26A%3C/text%3E%3C/svg%3E">
+
+<!-- Typography (only the weights actually used) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
+<noscript><style>.fade-in{opacity:1!important;transform:none!important}#envelopeStage{display:none!important}.scratch-canvas{display:none}</style></noscript>
 
 <style>
   :root {
-    /* Aesthetic Emerald & Gold Palette */
     --bg-cream: #F9F8F3;
     --primary-dark: #1F3F34;
-    --primary-light: #4A6B5D; 
-    --gold: #CBA153; 
+    --primary-light: #4A6B5D;
+    --gold: #CBA153;
     --gold-soft: #E6C875;
+    --gold-deep: #8A6420; /* gold for small text on cream (passes contrast) */
     --text-dark: #2A2A2A;
-    --premium-display: "Cormorant Garamond", serif;
-    --premium-body: "Montserrat", sans-serif;
+    --premium-display: "Cormorant Garamond", Georgia, serif;
+    --premium-body: "Montserrat", system-ui, sans-serif;
     --premium-script: "Allura", cursive;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-  /* --- FULL PAGE BODY --- */
   body {
     background-color: var(--bg-cream);
     color: var(--text-dark);
     font-family: var(--premium-body);
     -webkit-font-smoothing: antialiased;
-    margin: 0; 
-    height: 100vh; 
+    margin: 0;
+    height: 100vh;
     height: 100dvh;
-    overflow: hidden; 
+    overflow: hidden;
     position: relative;
   }
 
-  /* PREMIUM HANDMADE PAPER TEXTURE */
+  /* Paper texture: tiled small so it is rendered once, not stretched over the full screen */
   body::before {
-    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 9999;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
     opacity: 0.8;
   }
 
-  /* --- LUXURY FIXED FRAME (Edge to Edge) --- */
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
   .page-frame-outer {
     position: fixed; inset: 10px;
     border: 1px solid var(--gold); border-radius: 12px;
@@ -59,37 +81,32 @@
     pointer-events: none; z-index: 9990; opacity: 0.4;
   }
 
-  /* --- THE MAIN APP WRAPPER --- */
   .app-container {
-    position: absolute; 
-    inset: 10px; 
+    position: absolute;
+    inset: 10px;
     border-radius: 12px;
     background-color: var(--bg-cream);
-    overflow-y: auto; 
+    overflow-y: auto;
     overflow-x: hidden;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
-  
   .app-container::-webkit-scrollbar { width: 4px; }
   .app-container::-webkit-scrollbar-track { background: transparent; }
   .app-container::-webkit-scrollbar-thumb { background: rgba(203,161,83,0.45); border-radius: 10px; }
 
-  /* --- TYPOGRAPHY & SPACING --- */
   h1, h2, h3, .display-text { font-family: var(--premium-display); font-weight: 500; color: var(--primary-dark); }
   .script { font-family: var(--premium-script); font-size: clamp(38px, 9vw, 46px); color: var(--primary-dark); line-height: 1.05; margin-bottom: -4px; text-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
   .section-title { font-size: clamp(26px, 6.5vw, 32px); margin-top: 6px; letter-spacing: 0.03em; }
-  .label { font-family: var(--premium-body); font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; font-size: 11px; color: var(--gold); }
+  .label { font-family: var(--premium-body); font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; font-size: 12px; color: var(--gold); }
   a { text-decoration: none; color: inherit; }
-  
-  /* Harmonized section wrapper spacing */
+
   .wrap { max-width: 540px; margin: 0 auto; padding: 52px 22px; text-align: center; position: relative; z-index: 2; }
 
-  /* --- CINEMATIC SCROLL ANIMATIONS --- */
   .fade-in { opacity: 0; transform: translateY(24px) scale(0.97); transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1); }
   .fade-in.visible { opacity: 1; transform: translateY(0) scale(1); }
 
-  /* --- SHIMMERING TEXT EFFECTS --- */
   .shimmer-gold {
     background: linear-gradient(120deg, var(--gold) 0%, var(--gold-soft) 20%, #fff 40%, var(--gold-soft) 60%, var(--gold) 100%);
     background-size: 200% auto; color: transparent; -webkit-text-fill-color: transparent; -webkit-background-clip: text; background-clip: text; animation: shine 4s linear infinite;
@@ -100,7 +117,6 @@
   }
   @keyframes shine { to { background-position: 200% center; } }
 
-  /* --- GOLD DIVIDERS --- */
   .divider { width: 100%; display: flex; justify-content: center; align-items: center; margin: 12px auto; opacity: 0.8; }
   .divider::before, .divider::after { content: ""; height: 1px; width: 55px; background: linear-gradient(to right, transparent, var(--gold)); }
   .divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
@@ -115,7 +131,7 @@
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
   #envelopeStage.opened { opacity: 0; pointer-events: none; transform: scale(1.05); }
-  
+
   .wax-seal {
     width: 175px; height: 175px; border-radius: 50%; border: 2px solid var(--gold);
     position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 32px;
@@ -124,56 +140,48 @@
   }
   .wax-seal::before { content: ''; position: absolute; inset: 9px; border: 1.5px dashed var(--gold); border-radius: 50%; opacity: 0.6; }
   .wax-seal-text {
-    font-family: var(--premium-script);
-    font-size: 72px;
-    padding-right: 4px;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-family: var(--premium-script); font-size: 72px; padding-right: 4px; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
   }
   .wax-seal-text span {
-    font-family: var(--premium-display);
-    font-style: italic;
-    font-size: 0.48em;
-    margin: 0 6px;
-    color: var(--gold-soft);
-    -webkit-text-fill-color: var(--gold-soft);
-    opacity: 0.95;
+    font-family: var(--premium-display); font-style: italic; font-size: 0.48em; margin: 0 6px;
+    color: var(--gold-soft); -webkit-text-fill-color: var(--gold-soft); opacity: 0.95;
   }
 
   /* --- BUTTONS --- */
   .plaque-btn {
     position: relative; min-width: 190px; padding: 15px 26px; font-family: var(--premium-display); font-size: 18px; letter-spacing: 0.05em;
-    cursor: pointer; border: 1px solid var(--gold); transition: all 0.3s ease; background: transparent;
+    cursor: pointer; border: 1px solid var(--gold); transition: transform 0.3s ease, box-shadow 0.3s ease; background: transparent;
     clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px);
   }
   .plaque-btn.filled { background: linear-gradient(135deg, var(--gold-soft), var(--gold)); color: var(--primary-dark); font-weight: 600; border: none; box-shadow: 0 10px 20px rgba(203,161,83,0.2); }
   .plaque-btn.outline { background: transparent; color: var(--gold); }
+  .plaque-btn.dark { color: var(--primary-dark); }
   .plaque-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 22px rgba(203,161,83,0.3); }
   .plaque-btn:active { transform: translateY(1px); }
+  .plaque-btn:disabled { opacity: 0.6; cursor: wait; transform: none; box-shadow: none; }
   .btn-pulse { animation: pulse 2s infinite; }
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(203, 161, 83, 0.4); } 70% { box-shadow: 0 0 0 14px rgba(203, 161, 83, 0); } 100% { box-shadow: 0 0 0 0 rgba(203, 161, 83, 0); } }
 
   /* --- MUSIC PLAYER --- */
   .music-control {
-    position: fixed; bottom: 22px; right: 22px; z-index: 1000; width: 44px; height: 44px; border-radius: 50%;
-    background: rgba(249, 248, 243, 0.95); backdrop-filter: blur(5px); border: 1px solid var(--gold);
+    position: fixed; bottom: 22px; right: 22px; z-index: 1000; width: 44px; height: 44px; border-radius: 50%; padding: 0;
+    background: rgba(249, 248, 243, 0.95); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid var(--gold);
     display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;
   }
   .music-control:hover { transform: scale(1.08); }
-  .music-icon { color: var(--gold); font-size: 17px; font-weight: bold; }
+  .music-icon { color: var(--gold-deep); font-size: 17px; font-weight: bold; line-height: 1; }
   .music-control.playing { animation: spin-slow 8s linear infinite; border-color: var(--gold-soft); }
   @keyframes spin-slow { 100% { transform: rotate(360deg); } }
 
-  /* --- HERO SECTION --- */
+  /* --- HERO --- */
   .hero {
     background: radial-gradient(circle at center, #264A3D 0%, var(--primary-dark) 80%);
     color: var(--bg-cream); padding: 72px 20px 64px; text-align: center; position: relative; overflow: hidden;
   }
   .hero h1 { font-size: clamp(40px, 11vw, 72px); line-height: 1.12; margin: 14px 0; position: relative; z-index: 2; text-shadow: 0 10px 30px rgba(0,0,0,0.3); }
   .hero h1 i { font-family: var(--premium-script); color: var(--gold); -webkit-text-fill-color: var(--gold); font-size: 0.78em; font-style: normal; margin: 0 6px; }
-  
+
   .particles { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
   .particle { position: absolute; background: var(--gold-soft); border-radius: 50%; opacity: 0; animation: floatUp infinite ease-in; box-shadow: 0 0 8px var(--gold-soft); }
   @keyframes floatUp { 0% { opacity: 0; transform: translateY(150px) scale(0.5); } 20% { opacity: 0.7; } 80% { opacity: 0.5; } 100% { opacity: 0; transform: translateY(-100px) scale(1.2); } }
@@ -182,35 +190,26 @@
   .p3 { left: 65%; width: 4px; height: 4px; animation-duration: 7s; animation-delay: 4s; }
   .p4 { left: 85%; width: 6px; height: 6px; animation-duration: 11s; animation-delay: 1s; }
 
-  /* --- ELEGANT GANESHA FRAME --- */
   .ganesha-wrapper {
     width: 104px; height: 104px; margin: 0 auto; position: relative; z-index: 2;
     border-radius: 50%; border: 2px solid var(--gold); padding: 4px;
-    background: #FFFFFF;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    background: #FFFFFF; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     display: flex; align-items: center; justify-content: center; overflow: hidden;
   }
-  .ganesha-img { 
-    width: 100%; height: 100%; object-fit: cover; 
-    filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.1); 
-  }
+  .ganesha-img { width: 100%; height: 100%; object-fit: cover; filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.1); }
 
   /* --- TAP TO REVEAL --- */
   .scratch-container {
-    position: relative;
-    margin: 42px auto 0;
-    width: min(276px, 76vw);
-    height: min(276px, 76vw);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative; margin: 42px auto 0;
+    width: min(276px, 76vw); height: min(276px, 76vw);
+    display: flex; align-items: center; justify-content: center;
   }
   .scratch-pulse-ring {
     position: absolute; inset: -12px; border-radius: 50%; border: 1.5px solid var(--gold); opacity: 0; pointer-events: none; z-index: 0;
     animation: ringPulse 2.5s infinite ease-out;
   }
   @keyframes ringPulse { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.13); opacity: 0; } }
-  
+
   .scratch-wrap {
     position: absolute; inset: 0; z-index: 1;
     background: radial-gradient(circle, var(--primary-light) 0%, var(--primary-dark) 100%);
@@ -219,317 +218,166 @@
   }
   .scratch-under { position: absolute; font-family: var(--premium-display); color: var(--bg-cream); padding: 12px; }
   .scratch-under .d { font-size: clamp(52px, 14vw, 62px); line-height: 1; color: var(--gold); text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-  .scratch-under .m { font-family: var(--premium-body); font-size: 11.5px; letter-spacing: 0.22em; color: var(--bg-cream); margin-top: 8px; }
+  .scratch-under .m { font-family: var(--premium-body); font-size: 12px; letter-spacing: 0.22em; color: var(--bg-cream); margin-top: 8px; }
   .scratch-canvas { position: absolute; inset: 0; cursor: pointer; width: 100%; height: 100%; transition: opacity 0.8s ease; touch-action: manipulation; }
-  
-  #scratchHint {
-    margin-top: 32px;
-    color: var(--primary-dark);
-    letter-spacing: 0.28em;
-    font-size: 11px;
-    transition: opacity 0.5s ease;
-  }
 
-  /* --- LUXURY COUNTDOWN --- */
-  .counter {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(62px, 74px));
-    justify-content: center;
-    gap: 10px;
-    margin-top: 26px;
-  }
+  #scratchHint { margin-top: 32px; color: var(--primary-dark); letter-spacing: 0.28em; transition: opacity 0.5s ease; }
+
+  /* --- COUNTDOWN --- */
+  .counter { display: grid; grid-template-columns: repeat(4, minmax(62px, 74px)); justify-content: center; gap: 10px; margin-top: 26px; }
   .counter-item {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     width: 100%; height: 94px; background: var(--primary-dark); border: 1px solid var(--gold);
     border-radius: 37px 37px 6px 6px; box-shadow: 0 10px 22px rgba(31,63,52,0.14); position: relative; overflow: hidden;
   }
   .counter-item::after { content: ''; position: absolute; inset: 4px; border: 1px dashed rgba(203,161,83,0.5); border-radius: 33px 33px 4px 4px; pointer-events: none; }
-  .counter-item b { font-family: var(--premium-display); font-size: clamp(30px, 8vw, 36px); font-weight: 400; color: var(--bg-cream); line-height: 1; margin-top: 6px; z-index: 2; }
-  .counter-item span { font-size: 9px; letter-spacing: 0.14em; color: var(--gold-soft); margin-top: 6px; font-weight: 500; text-transform: uppercase; z-index: 2; }
+  .counter-item b { font-family: var(--premium-display); font-size: clamp(30px, 8vw, 36px); font-weight: 400; color: var(--bg-cream); line-height: 1; margin-top: 6px; z-index: 2; font-variant-numeric: tabular-nums; }
+  .counter-item span { font-size: 10px; letter-spacing: 0.14em; color: var(--gold-soft); margin-top: 6px; font-weight: 500; text-transform: uppercase; z-index: 2; }
+  .cal-wrap { margin-top: 30px; }
 
-  /* --- FROSTED GLASS CARDS --- */
-  .card { 
-    background: rgba(31, 63, 52, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
-    border: 1px solid rgba(203, 161, 83, 0.35); padding: 36px 22px; margin-top: 22px; border-radius: 14px; 
+  /* --- CARDS --- */
+  .card {
+    background: rgba(31, 63, 52, 0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(203, 161, 83, 0.35); padding: 36px 22px; margin-top: 22px; border-radius: 14px;
     box-shadow: 0 16px 36px rgba(0,0,0,0.13); position: relative; overflow: hidden;
   }
   .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(203,161,83,0.5), transparent); }
-  
+
   .venue-icon { width: 42px; height: 42px; color: var(--gold); margin: 0 auto 14px; display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); animation: floatIcon 4s ease-in-out infinite; }
   @keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
   .card h3 { font-size: clamp(24px, 6vw, 28px); margin: 6px 0; color: var(--bg-cream); text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-  .card p { font-size: 14px; color: rgba(249, 248, 243, 0.85); line-height: 1.6; letter-spacing: 0.02em; }
-  .card .time { font-family: var(--premium-display); font-size: 18px; font-style: italic; color: var(--gold-soft); margin-top: 10px; }
-  .card .action-link { display: inline-block; margin-top: 18px; font-size: 11px; letter-spacing: 0.15em; color: var(--gold); border-bottom: 1px solid rgba(203,161,83,0.4); padding-bottom: 3px; transition: color 0.3s, border-color 0.3s; }
+  .card p { font-size: 14px; color: rgba(249, 248, 243, 0.88); line-height: 1.6; letter-spacing: 0.02em; }
+  .card .time { font-family: var(--premium-display); font-size: 18px; font-style: italic; color: var(--gold-soft); margin-top: 10px; line-height: 1.45; }
+  .card .action-link { display: inline-block; margin-top: 18px; padding: 8px 2px; font-size: 12px; letter-spacing: 0.15em; color: var(--gold); border-bottom: 1px solid rgba(203,161,83,0.4); transition: color 0.3s, border-color 0.3s; }
   .card .action-link:hover { color: var(--bg-cream); border-color: var(--bg-cream); }
 
-  /* --- SIMPLE THEME-MATCHED TIMELINE --- */
-  .timeline-minimal {
-    max-width: 340px;
-    margin: 26px auto 0;
-    text-align: center;
-  }
-  .timeline-item .label {
-    color: var(--gold);
-    font-size: 11.5px;
-    letter-spacing: 0.25em;
-  }
-  .timeline-item h3 {
-    font-size: clamp(24px, 6vw, 28px);
-    color: var(--primary-dark);
-    margin: 4px 0;
-  }
-  .timeline-item p {
-    font-family: var(--premium-display);
-    font-style: italic;
-    font-size: 18px;
-    color: var(--primary-light);
-    line-height: 1.4;
-  }
-  .timeline-connector {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 18px auto;
-    opacity: 0.85;
-  }
-  .timeline-connector::before,
-  .timeline-connector::after {
-    content: "";
-    width: 1px;
-    height: 22px;
-    background: linear-gradient(to bottom, transparent, var(--gold));
-  }
-  .timeline-connector::after {
-    background: linear-gradient(to top, transparent, var(--gold));
-  }
-  .timeline-connector span {
-    width: 7px;
-    height: 7px;
-    border: 1px solid var(--gold);
-    transform: rotate(45deg);
-    margin: 6px 0;
-    display: block;
-  }
+  /* --- TIMELINE --- */
+  .timeline-minimal { max-width: 340px; margin: 26px auto 0; text-align: center; }
+  .timeline-item .label { color: var(--gold-deep); font-size: 12px; letter-spacing: 0.25em; }
+  .timeline-item h3 { font-size: clamp(24px, 6vw, 28px); color: var(--primary-dark); margin: 4px 0; }
+  .timeline-item p { font-family: var(--premium-display); font-style: italic; font-size: 18px; color: var(--primary-light); line-height: 1.4; }
+  .timeline-connector { display: flex; flex-direction: column; align-items: center; margin: 18px auto; opacity: 0.85; }
+  .timeline-connector::before, .timeline-connector::after { content: ""; width: 1px; height: 22px; background: linear-gradient(to bottom, transparent, var(--gold)); }
+  .timeline-connector::after { background: linear-gradient(to top, transparent, var(--gold)); }
+  .timeline-connector span { width: 7px; height: 7px; border: 1px solid var(--gold); transform: rotate(45deg); margin: 6px 0; display: block; }
 
-  /* --- FULL-VIEW MANUAL SWIPE SLIDESHOW --- */
-  .single-gallery-wrap {
-    max-width: 340px;
-    margin: 26px auto 10px;
-    position: relative;
-    user-select: none;
-    -webkit-user-select: none;
-  }
+  /* --- GALLERY --- */
+  .single-gallery-wrap { max-width: 340px; margin: 26px auto 10px; position: relative; user-select: none; -webkit-user-select: none; }
   .photo-main {
-    width: 100%;
-    /* Taller vertical aspect ratio so portrait photos display fully without getting cut off */
-    height: 440px;
-    border: 2px solid var(--gold);
-    border-radius: 170px 170px 14px 14px;
-    padding: 7px;
-    background: var(--bg-cream);
-    box-shadow: 0 18px 40px rgba(31, 63, 52, 0.15);
-    position: relative;
+    width: 100%; aspect-ratio: 13 / 20; border: 2px solid var(--gold); border-radius: 170px 170px 14px 14px;
+    padding: 7px; background: var(--bg-cream); box-shadow: 0 18px 40px rgba(31, 63, 52, 0.15); position: relative;
   }
-  .photo-main::after {
-    content: "";
-    position: absolute;
-    inset: 12px;
-    border: 1px dashed rgba(203, 161, 83, 0.65);
-    border-radius: 160px 160px 8px 8px;
-    pointer-events: none;
-    z-index: 5;
-  }
-  .slideshow-wrapper {
-    position: absolute;
-    inset: 7px;
-    border-radius: 163px 163px 8px 8px;
-    overflow: hidden;
-    /* Soft dark emerald backdrop fills side gaps cleanly for non-vertical photos */
-    background: #1F3F34; 
-    z-index: 1;
-    touch-action: pan-y;
-  }
-  .slide {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    /* OBJECT-FIT CONTAIN: Guarantees 100% of the image is visible inside the frame */
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
-    pointer-events: none;
-  }
-  .slide.active {
-    opacity: 1;
-    z-index: 2;
-  }
-  .placeholder-text {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--premium-body);
-    font-size: 10.5px;
-    letter-spacing: 0.15em;
-    color: var(--gold-soft);
-    text-align: center;
-    padding: 20px;
-    z-index: 0;
-    line-height: 1.6;
-  }
+  .photo-main::after { content: ""; position: absolute; inset: 12px; border: 1px dashed rgba(203, 161, 83, 0.65); border-radius: 160px 160px 8px 8px; pointer-events: none; z-index: 5; }
+  .slideshow-wrapper { position: absolute; inset: 7px; border-radius: 163px 163px 8px 8px; overflow: hidden; background: #EFE9DA; z-index: 1; touch-action: pan-y; }
+  /* cover = photo always fills the frame edge to edge (no side/top bars) */
+  .slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 0.4s ease-in-out; pointer-events: none; }
+  .slide.active { opacity: 1; z-index: 2; }
 
-  /* --- MANUAL SLIDE ARROWS & DOTS --- */
   .slide-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(31, 63, 52, 0.85);
-    border: 1px solid var(--gold);
-    color: var(--gold-soft);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: background 0.2s, transform 0.2s;
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(31, 63, 52, 0.85); border: 1px solid var(--gold); color: var(--gold-soft);
+    width: 40px; height: 40px; border-radius: 50%; font-size: 18px; padding: 0;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: background 0.2s, transform 0.2s;
   }
   .slide-btn:hover { background: var(--primary-dark); transform: translateY(-50%) scale(1.08); }
   .slide-prev { left: -14px; }
   .slide-next { right: -14px; }
 
-  .slide-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 14px;
-  }
-  .slide-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    border: 1px solid var(--gold);
-    background: transparent;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
-  }
-  .slide-dot.active {
-    background: var(--gold);
-    transform: scale(1.25);
-  }
+  .slide-dots { display: flex; justify-content: center; gap: 4px; margin-top: 8px; }
+  .slide-dot { width: 24px; height: 24px; padding: 0; border: 0; background: transparent; cursor: pointer; position: relative; }
+  .slide-dot::before { content: ""; position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; border: 1px solid var(--gold); transition: background 0.3s, transform 0.3s; }
+  .slide-dot.active::before { background: var(--gold); transform: scale(1.25); }
 
-  /* --- STYLISH GALLERY CLOSING MOTIF --- */
   .gallery-closing {
-    font-family: var(--premium-display);
-    font-size: clamp(15px, 3.8vw, 19px);
-    font-style: italic;
-    color: var(--primary-dark);
-    letter-spacing: 0.01em;
-    margin-top: 16px;
-    position: relative;
-    display: inline-block;
-    white-space: nowrap;
-    line-height: 1.4;
+    font-family: var(--premium-display); font-size: clamp(15px, 3.8vw, 19px); font-style: italic; color: var(--primary-dark);
+    letter-spacing: 0.01em; margin-top: 16px; position: relative; display: inline-block; line-height: 1.4;
   }
-  .gallery-closing::before, .gallery-closing::after {
-    content: "•";
-    color: var(--gold);
-    margin: 0 6px;
-    font-style: normal;
-  }
+  .gallery-closing::before, .gallery-closing::after { content: "•"; color: var(--gold); margin: 0 6px; font-style: normal; }
 
   /* --- RSVP --- */
   .panel { display: none; }
   .panel.active { display: block; animation: fadeIn 0.5s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
-  .field-label { text-align: left; font-family: var(--premium-body); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px; color: var(--gold-soft); }
+  .field-label { display: block; text-align: left; font-family: var(--premium-body); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px; color: var(--gold-soft); }
   .field-input { width: 100%; padding: 15px 14px; font-family: var(--premium-body); font-size: 16px; border: 1px solid rgba(203,161,83,0.3); border-radius: 6px; margin-bottom: 18px; background: rgba(255,255,255,0.06); color: var(--bg-cream); transition: border-color 0.3s; }
   .field-input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.1); }
-  .field-input::placeholder { color: rgba(255,255,255,0.3); }
+  .field-input::placeholder { color: rgba(255,255,255,0.45); }
+  .field-input.invalid { border-color: #E58C7B; }
+  .field-error { color: #F2B3A6; font-size: 13px; text-align: left; margin: -10px 0 16px; min-height: 0; }
+  .field-error:empty { display: none; }
   .guest-stepper { width: 100%; height: 54px; display: grid; grid-template-columns: 54px 1fr 54px; align-items: center; border: 1px solid rgba(203,161,83,0.3); border-radius: 6px; background: rgba(255,255,255,0.06); margin-bottom: 18px; }
   .guest-step-btn { height: 100%; border: 0; background: transparent; color: var(--gold); font-family: Georgia, serif; font-size: 24px; cursor: pointer; transition: background 0.2s ease; }
   .guest-step-btn:hover { background: rgba(203,161,83,0.15); }
   #rsvpCount { width: 100%; height: 100%; border: 0; border-left: 1px solid rgba(203,161,83,0.2); border-right: 1px solid rgba(203,161,83,0.2); background: transparent; text-align: center; color: var(--bg-cream); font-family: var(--premium-display); font-size: 22px; font-weight: 600; appearance: textfield; -moz-appearance: textfield; }
   #rsvpCount::-webkit-inner-spin-button, #rsvpCount::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
   .stacked-btn { width: 100%; margin-bottom: 12px; display: block; }
-  .notice-box { padding: 22px 18px; border: 1px solid var(--gold); font-size: 17px; color: var(--gold); border-radius: 8px; background: rgba(203,161,83,0.05); line-height: 1.5; }
+  .notice-box { padding: 22px 18px; border: 1px solid var(--gold); font-size: 17px; color: var(--gold-soft); border-radius: 8px; background: rgba(203,161,83,0.05); line-height: 1.5; }
 
-  /* --- FOOTER --- */
   footer { background: var(--primary-dark); color: var(--bg-cream); text-align: center; padding: 54px 20px 76px; position: relative; z-index: 2; border-top: 1px solid rgba(203,161,83,0.2); }
   footer h2 { color: var(--gold); font-size: clamp(26px, 7vw, 32px); margin-top: 10px; letter-spacing: 0.05em; }
   footer h2 i { color: var(--gold-soft); -webkit-text-fill-color: var(--gold-soft); font-style: italic; }
 
-  /* --- MOBILE-SPECIFIC REFINEMENTS --- */
   @media (max-width: 480px) {
     .page-frame-outer { inset: 8px; border-radius: 10px; }
     .page-frame-inner { inset: 12px; border-radius: 7px; }
     .app-container { inset: 8px; border-radius: 10px; }
     #envelopeStage { inset: 8px; border-radius: 10px; }
-
     .hero { padding: 58px 18px 50px; }
     .ganesha-wrapper { width: 96px; height: 96px; }
     .wrap { padding: 42px 18px; }
-
-    .scratch-container {
-      margin: 44px auto 0;
-      width: min(260px, 74vw);
-      height: min(260px, 74vw);
-    }
+    .scratch-container { margin: 44px auto 0; width: min(260px, 74vw); height: min(260px, 74vw); }
     #scratchHint { margin-top: 34px; }
-
     .counter { gap: 8px; margin-top: 22px; }
     .counter-item { height: 88px; }
-
     .card { padding: 30px 18px; margin-top: 18px; }
     .rsvp-buttons .plaque-btn { width: 100%; }
+    .music-control { bottom: 18px; right: 18px; width: 44px; height: 44px; }
+  }
 
-    .music-control { bottom: 18px; right: 18px; width: 42px; height: 42px; }
+  /* Respect "reduce motion" device setting (also saves battery) */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    .fade-in { opacity: 1; transform: none; }
+    .shimmer-gold, .shimmer-cream { background-position: 50% center; }
   }
 </style>
 </head>
 <body>
 
-<!-- FIXED EDGE-TO-EDGE LUXURY FRAME -->
-<div class="page-frame-outer"></div>
-<div class="page-frame-inner"></div>
+<div class="page-frame-outer" aria-hidden="true"></div>
+<div class="page-frame-inner" aria-hidden="true"></div>
 
-<!-- MAIN APP CONTAINER -->
 <div class="app-container">
-  
-  <!-- ENVELOPE INTRO (WAX SEAL) -->
-  <div id="envelopeStage">
-    <div class="wax-seal">
+
+  <!-- ENVELOPE INTRO -->
+  <div id="envelopeStage" role="dialog" aria-label="Wedding invitation">
+    <div class="wax-seal" aria-hidden="true">
       <div class="wax-seal-text shimmer-gold">A<span>&amp;</span>A</div>
     </div>
-    <button class="plaque-btn outline btn-pulse" id="openInviteBtn">Tap to Open</button>
+    <button type="button" class="plaque-btn outline btn-pulse" id="openInviteBtn">Tap to Open</button>
   </div>
 
-  <!-- FLOATING MUSIC PLAYER -->
-  <div class="music-control" id="musicBtn">
-    <span class="music-icon" id="musicIcon">♪</span>
-  </div>
-  <audio id="weddingMusic" loop>
-    <source src="Wedding Invitation.mp3.mp3" type="audio/mpeg">
+  <!-- MUSIC -->
+  <button type="button" class="music-control" id="musicBtn" aria-label="Play music" aria-pressed="false">
+    <span class="music-icon" id="musicIcon" aria-hidden="true">♪</span>
+  </button>
+  <audio id="weddingMusic" loop preload="none">
+    <source src="Wedding%20Invitation.mp3.mp3" type="audio/mpeg">
   </audio>
 
   <header class="hero">
-    <div class="particles">
+    <div class="particles" aria-hidden="true">
       <div class="particle p1"></div><div class="particle p2"></div>
       <div class="particle p3"></div><div class="particle p4"></div>
     </div>
 
     <div class="ganesha-wrapper fade-in">
-      <img src="golden-ganesha-icon-vector-43861836.jpg" alt="Lord Ganesha" class="ganesha-img">
+      <img src="golden-ganesha-icon-vector-43861836.jpg" alt="Lord Ganesha" class="ganesha-img" width="96" height="96" decoding="async">
     </div>
-    
+
     <div class="fade-in" style="margin-top: 32px; position: relative; z-index: 2; transition-delay: 0.2s;">
       <div class="label" style="color:var(--gold-soft);">TOGETHER WITH THEIR FAMILIES &amp; FRIENDS</div>
       <h1 class="shimmer-cream">Aiswarya <i>&amp;</i> Amith</h1>
@@ -542,18 +390,18 @@
     <section class="wrap fade-in">
       <p class="script">Our forever begins</p>
       <h2 class="section-title">CELEBRATING LOVE</h2>
-      <p style="margin-top: 16px; line-height: 1.7; color: rgba(42,42,42,0.85); font-size: 14.5px;">Love brought us together, and your blessings will light our way. Join us as we celebrate the start of our forever.</p>
+      <p style="margin-top: 16px; line-height: 1.7; color: rgba(42,42,42,0.88); font-size: 15px;">Love brought us together, and your blessings will light our way. Join us as we celebrate the start of our forever.</p>
     </section>
 
-    <div class="divider fade-in"><span></span></div>
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
 
     <!-- TAP TO REVEAL -->
     <section class="wrap fade-in">
       <p class="script">Save the date</p>
       <h2 class="section-title">A LITTLE SURPRISE</h2>
-      
+
       <div class="scratch-container fade-in">
-        <div class="scratch-pulse-ring"></div>
+        <div class="scratch-pulse-ring" aria-hidden="true"></div>
         <div class="scratch-wrap" id="scratchWrap">
           <div class="scratch-under">
             <div class="label" style="color:var(--gold-soft); margin-bottom:6px;">SAVE THE DATE</div>
@@ -561,29 +409,33 @@
             <div class="m">DECEMBER · 2026</div>
             <div style="font-style:italic; margin-top:14px; font-size:19px; color:var(--gold-soft);">Aiswarya &amp; Amith</div>
           </div>
-          <canvas class="scratch-canvas" id="scratchCanvas" width="300" height="300"></canvas>
+          <canvas class="scratch-canvas" id="scratchCanvas" width="300" height="300" role="button" tabindex="0" aria-label="Tap to reveal the wedding date"></canvas>
         </div>
       </div>
-      
-      <div class="label fade-in" id="scratchHint">TAP TO REVEAL</div>
+
+      <div class="label fade-in" id="scratchHint">TAP THE GOLD CIRCLE</div>
     </section>
 
-    <div class="divider fade-in"><span></span></div>
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
 
     <!-- COUNTDOWN -->
     <section class="wrap fade-in">
       <p class="script">Counting down</p>
       <h2 class="section-title">UNTIL FOREVER</h2>
-      
-      <div class="counter">
+
+      <div class="counter" role="timer" aria-label="Countdown to the wedding">
         <div class="counter-item"><b id="cd-d">00</b><span>Days</span></div>
         <div class="counter-item"><b id="cd-h">00</b><span>Hours</span></div>
         <div class="counter-item"><b id="cd-m">00</b><span>Min</span></div>
         <div class="counter-item"><b id="cd-s">00</b><span>Sec</span></div>
       </div>
+
+      <div class="cal-wrap">
+        <button type="button" class="plaque-btn outline dark" id="addCalBtn">Add to Calendar</button>
+      </div>
     </section>
 
-    <div class="divider fade-in"><span></span></div>
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
 
     <!-- VENUES -->
     <section class="wrap">
@@ -591,49 +443,47 @@
         <p class="script">Where to be</p>
         <h2 class="section-title">WEDDING &amp; RECEPTION</h2>
       </div>
-      
+
       <div class="card fade-in">
-        <svg class="venue-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="venue-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M4 60h56M12 60V32M52 60V32M24 60V32M40 60V32M32 32v28M8 32h48l-24-16z"/><path d="M32 16L8 32M32 16l24 16"/>
         </svg>
         <div class="label">WEDDING CEREMONY</div>
         <h3>Sangamam Auditorium</h3>
         <p>Thalassery, Kannur, Kerala</p>
-        <div class="time">11:30 AM – 12:00 PM, 20 December 2026</div>
-        <a class="action-link" href="https://maps.app.goo.gl/j9kko8fcZibu9Lic9" target="_blank">OPEN IN MAPS →</a>
+        <div class="time">Sunday, 20 December 2026<br>11:30 AM – 12:00 PM</div>
+        <a class="action-link" href="https://maps.app.goo.gl/j9kko8fcZibu9Lic9" target="_blank" rel="noopener noreferrer">OPEN IN MAPS →</a>
       </div>
 
       <div class="card fade-in">
-        <svg class="venue-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="venue-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M8 60h48M16 60V28M48 60V28"/><path d="M32 12L4 32M32 12l28 20"/><path d="M26 60V40h12v20M16 28l16-12 16 12"/><rect x="20" y="34" width="8" height="8"/><rect x="36" y="34" width="8" height="8"/>
         </svg>
         <div class="label">RECEPTION</div>
         <h3>Kalharam House</h3>
         <p>Illathuthazhe, Thalassery, Kerala</p>
-        <div class="time">6:00 PM – 9:00 PM</div>
-        <a class="action-link" href="https://maps.app.goo.gl/AKWLbuikaaqMMzno6" target="_blank">OPEN IN MAPS →</a>
+        <div class="time">Sunday, 20 December 2026<br>6:00 PM – 9:00 PM</div>
+        <a class="action-link" href="https://maps.app.goo.gl/AKWLbuikaaqMMzno6" target="_blank" rel="noopener noreferrer">OPEN IN MAPS →</a>
       </div>
     </section>
 
-    <div class="divider fade-in"><span></span></div>
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
 
-    <!-- SIMPLE THEME-MATCHED TIMELINE -->
+    <!-- TIMELINE -->
     <section class="wrap">
       <div class="fade-in">
         <p class="script">The day unfolds</p>
       </div>
-      
+
       <div class="timeline-minimal">
         <div class="timeline-item fade-in">
           <div class="label">11:30 AM</div>
-          <h3>Marriage</h3>
+          <h3>Wedding Ceremony</h3>
           <p>The sacred moment</p>
         </div>
-        
-        <div class="timeline-connector fade-in">
-          <span></span>
-        </div>
-        
+
+        <div class="timeline-connector fade-in" aria-hidden="true"><span></span></div>
+
         <div class="timeline-item fade-in">
           <div class="label">6:00 PM</div>
           <h3>Reception</h3>
@@ -642,34 +492,32 @@
       </div>
     </section>
 
-    <div class="divider fade-in"><span></span></div>
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
 
-    <!-- SINGLE MANUAL SWIPE PHOTO GALLERY -->
+    <!-- GALLERY -->
     <section class="wrap fade-in">
       <p class="script">Glimpses of us</p>
 
       <div class="single-gallery-wrap" id="galleryContainer">
-        <button class="slide-btn slide-prev" onclick="changeSlide(-1)">❮</button>
-        <button class="slide-btn slide-next" onclick="changeSlide(1)">❯</button>
+        <button type="button" class="slide-btn slide-prev" id="slidePrev" aria-label="Previous photo">❮</button>
+        <button type="button" class="slide-btn slide-next" id="slideNext" aria-label="Next photo">❯</button>
 
         <div class="photo-main">
-          <div class="placeholder-text">Upload to GitHub:<br>slide1.jpg to slide5.jpg</div>
           <div class="slideshow-wrapper" id="slideshowWrapper">
-            <img src="slide1.jpg" class="slide active" alt="Aiswarya and Amith 1" onerror="this.remove()">
-            <img src="slide2.jpg" class="slide" alt="Aiswarya and Amith 2" onerror="this.remove()">
-            <img src="slide3.jpg" class="slide" alt="Aiswarya and Amith 3" onerror="this.remove()">
-            <img src="slide4.jpg" class="slide" alt="Aiswarya and Amith 4" onerror="this.remove()">
-            <img src="slide5.jpg" class="slide" alt="Aiswarya and Amith 5" onerror="this.remove()">
+            <img src="slide1.jpg" class="slide active" alt="Aiswarya and Amith, photo 1" width="780" height="1200" loading="lazy" decoding="async">
+            <img src="slide2.jpg" class="slide" alt="Aiswarya and Amith, photo 2" width="780" height="1200" loading="lazy" decoding="async">
+            <img src="slide3.jpg" class="slide" alt="Aiswarya and Amith, photo 3" width="780" height="1200" loading="lazy" decoding="async">
+            <img src="slide4.jpg" class="slide" alt="Aiswarya and Amith, photo 4" width="780" height="1200" loading="lazy" decoding="async">
           </div>
         </div>
 
         <div class="slide-dots" id="slideDots"></div>
       </div>
-      
+
       <div class="gallery-closing">We can't wait to share our special day with you</div>
     </section>
 
-    <div class="divider fade-in"><span></span></div>
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
 
     <!-- RSVP -->
     <section id="rsvp" class="wrap" style="padding-bottom: 64px;">
@@ -681,36 +529,38 @@
       <div class="card fade-in" style="max-width: 460px; margin: 22px auto 0; padding: 38px 22px;">
         <div id="panel-ask" class="panel active">
           <div class="rsvp-buttons" style="margin-top: 0;">
-            <button class="plaque-btn filled" onclick="showPanel('panel-name')">Yes, I'll be there</button>
-            <button class="plaque-btn outline" onclick="showPanel('panel-decline')">No, I can't make it</button>
+            <button type="button" class="plaque-btn filled" data-panel="panel-name">Yes, I'll be there</button>
+            <button type="button" class="plaque-btn outline" data-panel="panel-decline">No, I can't make it</button>
           </div>
         </div>
 
-        <div id="panel-decline" class="panel">
+        <div id="panel-decline" class="panel" aria-live="polite">
           <div class="notice-box">✓ Thank you for letting us know — you'll be missed!</div>
         </div>
 
         <div id="panel-name" class="panel">
-          <h2 class="rsvp-heading shimmer-gold" style="font-family: var(--premium-script); font-size: clamp(44px, 11vw, 52px); font-weight: normal; margin-bottom: 6px;">We're so glad!</h2>
-          <p style="margin-bottom: 22px; font-size:15px; color: rgba(249,248,243,0.85);">Let us know who's joining the celebration.</p>
-          <div style="text-align: left;">
-            <div class="field-label">Your Name</div>
-            <input id="guestName" class="field-input" type="text" placeholder="Enter full name" required>
+          <h2 class="shimmer-gold" style="font-family: var(--premium-script); font-size: clamp(44px, 11vw, 52px); font-weight: normal; margin-bottom: 6px;">We're so glad!</h2>
+          <p style="margin-bottom: 22px; font-size:15px; color: rgba(249,248,243,0.88);">Let us know who's joining the celebration.</p>
+          <form id="rsvpForm" style="text-align: left;" novalidate>
+            <label class="field-label" for="guestName">Your Name</label>
+            <input id="guestName" class="field-input" type="text" placeholder="Enter full name" autocomplete="name" maxlength="60" required>
+            <div class="field-error" id="nameError" role="alert"></div>
 
-            <div class="field-label" style="margin-top:4px;">Number of Guests</div>
+            <span class="field-label" style="margin-top:4px;" id="guestsLabel">Number of Guests</span>
             <div class="guest-stepper">
-              <button type="button" class="guest-step-btn" id="guestMinus">−</button>
-              <input id="rsvpCount" type="number" value="1" min="1" readonly>
-              <button type="button" class="guest-step-btn" id="guestPlus">+</button>
+              <button type="button" class="guest-step-btn" id="guestMinus" aria-label="Decrease guests">−</button>
+              <input id="rsvpCount" type="number" value="1" min="1" max="10" readonly aria-labelledby="guestsLabel">
+              <button type="button" class="guest-step-btn" id="guestPlus" aria-label="Increase guests">+</button>
             </div>
-            <p style="text-align:center; font-size:12px; color: rgba(249,248,243,0.5); margin-top:-10px; margin-bottom:20px;">Including yourself</p>
+            <p style="text-align:center; font-size:13px; color: rgba(249,248,243,0.65); margin-top:-10px; margin-bottom:20px;">Including yourself</p>
+            <div class="field-error" id="sendError" role="alert" style="text-align:center;"></div>
 
-            <button class="plaque-btn filled stacked-btn" id="btnConfirmRSVP">Confirm RSVP</button>
-            <button class="plaque-btn outline stacked-btn" style="margin-bottom: 0;" onclick="showPanel('panel-ask')">Cancel</button>
-          </div>
+            <button type="submit" class="plaque-btn filled stacked-btn" id="btnConfirmRSVP">Confirm RSVP</button>
+            <button type="button" class="plaque-btn outline stacked-btn" style="margin-bottom: 0;" data-panel="panel-ask">Cancel</button>
+          </form>
         </div>
 
-        <div id="panel-confirmed" class="panel">
+        <div id="panel-confirmed" class="panel" aria-live="polite">
           <div class="notice-box">✓ Sent! We can't wait to celebrate with you!</div>
         </div>
       </div>
@@ -721,194 +571,247 @@
       <h2 class="shimmer-gold">AISWARYA <i>&amp;</i> AMITH</h2>
       <div style="font-family: var(--premium-display); font-size: 20px; color: var(--gold-soft); margin-top: 8px; font-style: italic;">Friends &amp; Family</div>
     </footer>
-    
+
   </main>
-</div> <!-- End App Container -->
+</div>
 
 <script>
-  // --- Updated Scroll Animations to target inner app container ---
-  document.addEventListener('DOMContentLoaded', function() {
-    const scrollContainer = document.querySelector('.app-container');
-    const faders = document.querySelectorAll('.fade-in');
-    
-    const appearOptions = { 
-      root: scrollContainer,
-      threshold: 0.12, 
-      rootMargin: "0px 0px -15px 0px" 
-    };
-    
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      });
-    }, appearOptions);
-    
-    faders.forEach(fader => { appearOnScroll.observe(fader); });
+(function () {
+  'use strict';
 
-    // Initialize Manual Slideshow & Swipe Gestures
+  /* ================= SETTINGS — edit these ================= */
+  var CONFIG = {
+    // Option A (recommended): Google Apps Script web-app URL (see apps-script.gs). RSVPs land in a Google Sheet.
+    rsvpEndpoint: "",
+    // Option B: WhatsApp number to receive RSVPs, digits only with country code, e.g. "919XXXXXXXXX".
+    whatsappNumber: "",
+    maxGuests: 10,
+    // 11:30 AM India time, fixed offset so guests abroad see the correct countdown
+    weddingStart: "2026-12-20T11:30:00+05:30"
+  };
+  /* ========================================================== */
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- Scroll-in animations ---------- */
+  document.addEventListener('DOMContentLoaded', function () {
+    var faders = document.querySelectorAll('.fade-in');
+    if (!('IntersectionObserver' in window)) {
+      faders.forEach(function (f) { f.classList.add('visible'); });
+    } else {
+      var io = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        });
+      }, { root: document.querySelector('.app-container'), threshold: 0.12, rootMargin: '0px 0px -15px 0px' });
+      faders.forEach(function (f) { io.observe(f); });
+    }
     initSlideshow();
-    initSwipeGestures();
+    initSwipe();
   });
 
-  // --- Manual Multi-Photo Slideshow & Touch Swipe Logic ---
-  var currentSlideIndex = 0;
+  /* ---------- Slideshow ---------- */
+  var current = 0;
+  function slides() { return document.querySelectorAll('#slideshowWrapper .slide'); }
+
+  function buildDots() {
+    var list = slides(), box = $('slideDots');
+    box.innerHTML = '';
+    var multi = list.length > 1;
+    $('slidePrev').style.display = $('slideNext').style.display = multi ? '' : 'none';
+    if (!multi) return;
+    list.forEach(function (_, i) {
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'slide-dot';
+      d.setAttribute('aria-label', 'Show photo ' + (i + 1));
+      d.addEventListener('click', function () { show(i); });
+      box.appendChild(d);
+    });
+    show(Math.min(current, list.length - 1));
+  }
+
+  function show(i) {
+    var list = slides(); if (!list.length) return;
+    current = (i + list.length) % list.length;
+    list.forEach(function (s, k) { s.classList.toggle('active', k === current); });
+    document.querySelectorAll('#slideDots .slide-dot').forEach(function (d, k) { d.classList.toggle('active', k === current); });
+  }
 
   function initSlideshow() {
-    var slides = document.querySelectorAll('#slideshowWrapper .slide');
-    var dotsContainer = document.getElementById('slideDots');
-    if (!dotsContainer || slides.length <= 1) return;
-
-    dotsContainer.innerHTML = '';
-    slides.forEach(function(_, idx) {
-      var dot = document.createElement('button');
-      dot.className = 'slide-dot' + (idx === 0 ? ' active' : '');
-      dot.onclick = function() { goToSlide(idx); };
-      dotsContainer.appendChild(dot);
+    slides().forEach(function (img) {
+      // A missing photo is dropped and the gallery rebuilds itself
+      img.addEventListener('error', function () { img.remove(); buildDots(); });
     });
+    $('slidePrev').addEventListener('click', function () { show(current - 1); });
+    $('slideNext').addEventListener('click', function () { show(current + 1); });
+    buildDots();
   }
 
-  function showSlide(index) {
-    var slides = document.querySelectorAll('#slideshowWrapper .slide');
-    var dots = document.querySelectorAll('#slideDots .slide-dot');
-    if (slides.length === 0) return;
-
-    if (index >= slides.length) currentSlideIndex = 0;
-    else if (index < 0) currentSlideIndex = slides.length - 1;
-    else currentSlideIndex = index;
-
-    slides.forEach(function(s) { s.classList.remove('active'); });
-    dots.forEach(function(d) { d.classList.remove('active'); });
-
-    slides[currentSlideIndex].classList.add('active');
-    if (dots[currentSlideIndex]) dots[currentSlideIndex].classList.add('active');
+  function initSwipe() {
+    var g = $('galleryContainer'), x0 = 0, y0 = 0;
+    g.addEventListener('touchstart', function (e) { x0 = e.changedTouches[0].clientX; y0 = e.changedTouches[0].clientY; }, { passive: true });
+    g.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return; // ignore vertical scrolls
+      show(current + (dx < 0 ? 1 : -1));
+    }, { passive: true });
   }
 
-  function changeSlide(direction) {
-    showSlide(currentSlideIndex + direction);
+  /* ---------- Music ---------- */
+  var music = $('weddingMusic'), musicBtn = $('musicBtn'), musicIcon = $('musicIcon');
+  var resumeAfterHidden = false;
+
+  function musicUI(on) {
+    musicIcon.textContent = on ? '॥' : '♪';
+    musicBtn.classList.toggle('playing', on);
+    musicBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    musicBtn.setAttribute('aria-label', on ? 'Pause music' : 'Play music');
   }
-
-  function goToSlide(index) {
-    showSlide(index);
+  function playMusic() {
+    var p = music.play();
+    if (p && p.then) { p.then(function () { musicUI(true); }).catch(function () { musicUI(false); }); }
+    else { musicUI(true); }
   }
-
-  // Swipe gesture support for mobile phones
-  function initSwipeGestures() {
-    var gallery = document.getElementById('galleryContainer');
-    if (!gallery) return;
-
-    var touchStartX = 0;
-    var touchEndX = 0;
-
-    gallery.addEventListener('touchstart', function(e) {
-      touchStartX = e.changedTouches[0].screenX;
-    }, {passive: true});
-
-    gallery.addEventListener('touchend', function(e) {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, {passive: true});
-
-    function handleSwipe() {
-      var threshold = 40; // minimum distance for swipe
-      if (touchEndX < touchStartX - threshold) {
-        changeSlide(1); // Swipe Left -> Next Photo
-      }
-      if (touchEndX > touchStartX + threshold) {
-        changeSlide(-1); // Swipe Right -> Previous Photo
-      }
-    }
-  }
-
-  // --- Music Logic ---
-  var music = document.getElementById('weddingMusic');
-  var musicBtn = document.getElementById('musicBtn');
-  var musicIcon = document.getElementById('musicIcon');
-  var isPlaying = false;
-
-  function toggleMusic() {
-    if (isPlaying) {
-      music.pause();
-      musicIcon.innerHTML = '♪';
-      musicBtn.classList.remove('playing');
-    } else {
-      music.play().catch(function(error) { console.log("Audio playback failed:", error); });
-      musicIcon.innerHTML = '॥';
-      musicBtn.classList.add('playing');
-    }
-    isPlaying = !isPlaying;
-  }
-  
-  musicBtn.addEventListener('click', toggleMusic);
-
-  // --- Envelope Logic ---
-  document.getElementById('openInviteBtn').addEventListener('click', function() {
-    document.getElementById('envelopeStage').classList.add('opened');
-    setTimeout(() => { document.getElementById('envelopeStage').style.display = 'none'; }, 800);
-    if (!isPlaying) { toggleMusic(); }
+  musicBtn.addEventListener('click', function () {
+    if (music.paused) { playMusic(); } else { music.pause(); musicUI(false); }
+  });
+  // Stop the music when the guest switches app / locks the phone
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { resumeAfterHidden = !music.paused; if (resumeAfterHidden) { music.pause(); } }
+    else if (resumeAfterHidden) { resumeAfterHidden = false; playMusic(); }
   });
 
-  // --- Countdown Logic ---
-  var target = new Date("2026-12-20T11:30:00");
-  function tick(){
-    var now = new Date(); var diff = target - now; if (diff < 0) diff = 0;
-    var d = Math.floor(diff / (1000*60*60*24)); var h = Math.floor((diff / (1000*60*60)) % 24);
-    var m = Math.floor((diff / (1000*60)) % 60); var s = Math.floor((diff / 1000) % 60);
-    function pad(n){ return String(n).padStart(2,'0'); }
-    document.getElementById('cd-d').textContent = pad(d); document.getElementById('cd-h').textContent = pad(h);
-    document.getElementById('cd-m').textContent = pad(m); document.getElementById('cd-s').textContent = pad(s);
+  /* ---------- Envelope ---------- */
+  $('openInviteBtn').addEventListener('click', function () {
+    var stage = $('envelopeStage');
+    stage.classList.add('opened');
+    setTimeout(function () { stage.style.display = 'none'; }, 800);
+    if (music.paused) playMusic();
+  });
+
+  /* ---------- Countdown ---------- */
+  var target = new Date(CONFIG.weddingStart);
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    var diff = Math.max(0, target - new Date());
+    $('cd-d').textContent = pad(Math.floor(diff / 86400000));
+    $('cd-h').textContent = pad(Math.floor(diff / 3600000) % 24);
+    $('cd-m').textContent = pad(Math.floor(diff / 60000) % 60);
+    $('cd-s').textContent = pad(Math.floor(diff / 1000) % 60);
   }
   tick(); setInterval(tick, 1000);
 
-  // --- Tap Reveal Logic ---
-  var canvas = document.getElementById('scratchCanvas');
-  var ctx = canvas.getContext('2d');
-  
-  var gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-  gradient.addColorStop(0, "#E6C875");
-  gradient.addColorStop(0.5, "#CBA153");
-  gradient.addColorStop(1, "#E6C875");
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-  ctx.fillStyle = 'rgba(255,255,255,0.9)';
-  ctx.font = '500 14px Montserrat';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText('T A P   T O   R E V E A L', 150, 154);
+  /* ---------- Add to calendar (.ics) ---------- */
+  $('addCalBtn').addEventListener('click', function () {
+    var ics = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Aiswarya and Amith//Wedding//EN', 'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT', 'UID:ceremony-20261220@aiswarya-amith-wedding', 'DTSTAMP:20261031T000000Z',
+      'DTSTART:20261220T060000Z', 'DTEND:20261220T063000Z',
+      'SUMMARY:Aiswarya & Amith - Wedding Ceremony', 'LOCATION:Sangamam Auditorium\\, Thalassery\\, Kannur\\, Kerala',
+      'DESCRIPTION:Map: https://maps.app.goo.gl/j9kko8fcZibu9Lic9',
+      'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'DESCRIPTION:Wedding tomorrow', 'END:VALARM', 'END:VEVENT',
+      'BEGIN:VEVENT', 'UID:reception-20261220@aiswarya-amith-wedding', 'DTSTAMP:20261031T000000Z',
+      'DTSTART:20261220T123000Z', 'DTEND:20261220T153000Z',
+      'SUMMARY:Aiswarya & Amith - Reception', 'LOCATION:Kalharam House\\, Illathuthazhe\\, Thalassery\\, Kerala',
+      'DESCRIPTION:Map: https://maps.app.goo.gl/AKWLbuikaaqMMzno6',
+      'END:VEVENT', 'END:VCALENDAR'
+    ].join('\r\n');
+    var url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+    var a = document.createElement('a');
+    a.href = url; a.download = 'Aiswarya-and-Amith-Wedding.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+  });
 
-  function revealDate() {
+  /* ---------- Tap to reveal ---------- */
+  var canvas = $('scratchCanvas'), revealed = false;
+
+  function drawCover() {
+    if (revealed) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 3);
+    var size = canvas.clientWidth || 260;
+    canvas.width = Math.round(size * dpr); canvas.height = Math.round(size * dpr);
+    var c = canvas.getContext('2d');
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var g = c.createLinearGradient(0, 0, size, size);
+    g.addColorStop(0, '#E6C875'); g.addColorStop(0.5, '#CBA153'); g.addColorStop(1, '#E6C875');
+    c.fillStyle = g; c.fillRect(0, 0, size, size);
+    c.fillStyle = 'rgba(255,255,255,0.95)';
+    c.font = '500 14px Montserrat, sans-serif';
+    c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.fillText('T A P   T O   R E V E A L', size / 2, size / 2);
+  }
+  // Draw once the web font is ready so the text isn't in a fallback font
+  if (document.fonts && document.fonts.load) { document.fonts.load('500 14px Montserrat').then(drawCover, drawCover); }
+  drawCover();
+  var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(drawCover, 150); });
+
+  function reveal() {
+    if (revealed) return;
+    revealed = true;
     canvas.style.opacity = '0';
-    canvas.style.pointerEvents = 'none'; 
-    var hint = document.getElementById('scratchHint');
-    if(hint) hint.style.opacity = '0';
+    canvas.style.pointerEvents = 'none';
+    canvas.setAttribute('aria-hidden', 'true');
+    canvas.tabIndex = -1;
+    $('scratchHint').style.opacity = '0';
   }
+  canvas.addEventListener('click', reveal);
+  canvas.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); } });
 
-  canvas.addEventListener('click', revealDate);
-  canvas.addEventListener('touchstart', function(e) { e.preventDefault(); revealDate(); }, {passive: false});
-
-  // --- RSVP Panel Logic ---
+  /* ---------- RSVP ---------- */
   function showPanel(id) {
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); });
+    $(id).classList.add('active');
   }
-
-  var countInput = document.getElementById('rsvpCount');
-  document.getElementById('guestMinus').addEventListener('click', function() {
-    var val = parseInt(countInput.value) || 1;
-    if (val > 1) countInput.value = val - 1;
-  });
-  document.getElementById('guestPlus').addEventListener('click', function() {
-    var val = parseInt(countInput.value) || 1;
-    countInput.value = val + 1;
+  document.querySelectorAll('[data-panel]').forEach(function (b) {
+    b.addEventListener('click', function () { showPanel(b.getAttribute('data-panel')); });
   });
 
-  document.getElementById('btnConfirmRSVP').addEventListener('click', function() {
-    var name = document.getElementById('guestName').value.trim();
-    if(!name) { alert("Please enter your name!"); return; }
-    showPanel('panel-confirmed');
+  var count = $('rsvpCount');
+  count.max = CONFIG.maxGuests;
+  $('guestMinus').addEventListener('click', function () { var v = parseInt(count.value, 10) || 1; if (v > 1) count.value = v - 1; });
+  $('guestPlus').addEventListener('click', function () { var v = parseInt(count.value, 10) || 1; if (v < CONFIG.maxGuests) count.value = v + 1; });
+
+  var nameInput = $('guestName');
+  nameInput.addEventListener('input', function () { nameInput.classList.remove('invalid'); $('nameError').textContent = ''; });
+
+  $('rsvpForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = nameInput.value.trim().replace(/\s+/g, ' ');
+    var guests = parseInt(count.value, 10) || 1;
+    $('sendError').textContent = '';
+
+    if (!name) {
+      nameInput.classList.add('invalid');
+      $('nameError').textContent = 'Please enter your name.';
+      nameInput.focus();
+      return;
+    }
+
+    var btn = $('btnConfirmRSVP');
+    var payload = { name: name, guests: guests, attending: 'Yes' };
+
+    if (CONFIG.rsvpEndpoint) {
+      btn.disabled = true; btn.textContent = 'Sending…';
+      // text/plain avoids a CORS preflight (Apps Script can't answer one)
+      fetch(CONFIG.rsvpEndpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+        .then(function () { showPanel('panel-confirmed'); })
+        .catch(function () { $('sendError').textContent = 'Could not send. Please check your connection and try again.'; })
+        .then(function () { btn.disabled = false; btn.textContent = 'Confirm RSVP'; });
+    } else if (CONFIG.whatsappNumber) {
+      var msg = 'Hi! This is ' + name + '. I will be attending the wedding of Aiswarya & Amith on 20 December 2026. Number of guests: ' + guests + '.';
+      window.open('https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+      showPanel('panel-confirmed');
+    } else {
+      // No destination configured yet: nothing is actually delivered.
+      console.warn('RSVP not delivered: set CONFIG.rsvpEndpoint or CONFIG.whatsappNumber in index.html');
+      showPanel('panel-confirmed');
+    }
   });
+})();
 </script>
 </body>
 </html>
