@@ -25,7 +25,7 @@
     --premium-script: "Allura", cursive;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
   /* --- FULL PAGE BODY --- */
   body {
@@ -49,12 +49,12 @@
 
   /* --- LUXURY FIXED FRAME (Edge to Edge) --- */
   .page-frame-outer {
-    position: fixed; inset: 12px;
+    position: fixed; inset: 10px;
     border: 1px solid var(--gold); border-radius: 12px;
     pointer-events: none; z-index: 9990; opacity: 0.7;
   }
   .page-frame-inner {
-    position: fixed; inset: 18px;
+    position: fixed; inset: 15px;
     border: 1px dashed var(--gold); border-radius: 8px;
     pointer-events: none; z-index: 9990; opacity: 0.4;
   }
@@ -62,29 +62,31 @@
   /* --- THE MAIN APP WRAPPER --- */
   .app-container {
     position: absolute; 
-    inset: 12px; 
+    inset: 10px; 
     border-radius: 12px;
     background-color: var(--bg-cream);
     overflow-y: auto; 
     overflow-x: hidden;
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
   
-  .app-container::-webkit-scrollbar { width: 5px; }
+  .app-container::-webkit-scrollbar { width: 4px; }
   .app-container::-webkit-scrollbar-track { background: transparent; }
-  .app-container::-webkit-scrollbar-thumb { background: rgba(203,161,83,0.5); border-radius: 10px; }
+  .app-container::-webkit-scrollbar-thumb { background: rgba(203,161,83,0.45); border-radius: 10px; }
 
   /* --- TYPOGRAPHY & SPACING --- */
   h1, h2, h3, .display-text { font-family: var(--premium-display); font-weight: 500; color: var(--primary-dark); }
-  .script { font-family: var(--premium-script); font-size: 46px; color: var(--primary-dark); line-height: 1; margin-bottom: -8px; text-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
-  .label { font-family: var(--premium-body); font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; font-size: 11px; color: var(--gold); }
+  .script { font-family: var(--premium-script); font-size: clamp(38px, 9vw, 46px); color: var(--primary-dark); line-height: 1.05; margin-bottom: -4px; text-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
+  .section-title { font-size: clamp(26px, 6.5vw, 32px); margin-top: 6px; letter-spacing: 0.03em; }
+  .label { font-family: var(--premium-body); font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; font-size: 11px; color: var(--gold); }
   a { text-decoration: none; color: inherit; }
   
-  /* Perfectly balanced section wrapper spacing */
-  .wrap { max-width: 580px; margin: 0 auto; padding: 75px 24px; text-align: center; position: relative; z-index: 2; }
+  /* Harmonized section wrapper spacing */
+  .wrap { max-width: 540px; margin: 0 auto; padding: 52px 22px; text-align: center; position: relative; z-index: 2; }
 
   /* --- CINEMATIC SCROLL ANIMATIONS --- */
-  .fade-in { opacity: 0; transform: translateY(30px) scale(0.96); transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .fade-in { opacity: 0; transform: translateY(24px) scale(0.97); transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1); }
   .fade-in.visible { opacity: 1; transform: translateY(0) scale(1); }
 
   /* --- SHIMMERING TEXT EFFECTS --- */
@@ -99,35 +101,36 @@
   @keyframes shine { to { background-position: 200% center; } }
 
   /* --- GOLD DIVIDERS --- */
-  .divider { width: 100%; display: flex; justify-content: center; align-items: center; margin: 50px 0; opacity: 0.8; }
-  .divider::before, .divider::after { content: ""; height: 1px; width: 60px; background: linear-gradient(to right, transparent, var(--gold)); }
+  .divider { width: 100%; display: flex; justify-content: center; align-items: center; margin: 12px auto; opacity: 0.8; }
+  .divider::before, .divider::after { content: ""; height: 1px; width: 55px; background: linear-gradient(to right, transparent, var(--gold)); }
   .divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
-  .divider span { margin: 0 15px; width: 8px; height: 8px; background: transparent; border: 1px solid var(--gold); transform: rotate(45deg); display: inline-block; box-shadow: 0 0 5px rgba(203,161,83,0.3); }
+  .divider span { margin: 0 14px; width: 7px; height: 7px; background: transparent; border: 1px solid var(--gold); transform: rotate(45deg); display: inline-block; box-shadow: 0 0 5px rgba(203,161,83,0.3); }
 
   /* --- ENVELOPE INTRO --- */
   #envelopeStage {
-    position: fixed; inset: 12px; border-radius: 12px;
+    position: fixed; inset: 10px; border-radius: 12px;
     background: var(--primary-dark); z-index: 10000;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 24px;
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
   #envelopeStage.opened { opacity: 0; pointer-events: none; transform: scale(1.05); }
   
   .wax-seal {
-    width: 190px; height: 190px; border-radius: 50%; border: 2px solid var(--gold);
-    position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 35px;
+    width: 175px; height: 175px; border-radius: 50%; border: 2px solid var(--gold);
+    position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 32px;
     background: radial-gradient(circle, rgba(203,161,83,0.2) 0%, rgba(203,161,83,0.05) 100%);
     box-shadow: 0 0 40px rgba(203, 161, 83, 0.3), inset 0 0 30px rgba(203, 161, 83, 0.2);
   }
-  .wax-seal::before { content: ''; position: absolute; inset: 10px; border: 1.5px dashed var(--gold); border-radius: 50%; opacity: 0.6; }
-  .wax-seal-text { font-family: var(--premium-script); font-size: 78px; padding-right: 6px; z-index: 2; }
-  .wax-seal-text span { font-size: 0.55em; margin: 0 6px; opacity: 0.9; }
+  .wax-seal::before { content: ''; position: absolute; inset: 9px; border: 1.5px dashed var(--gold); border-radius: 50%; opacity: 0.6; }
+  .wax-seal-text { font-family: var(--premium-script); font-size: 72px; padding-right: 6px; z-index: 2; }
+  .wax-seal-text span { font-size: 0.55em; margin: 0 5px; opacity: 0.9; }
 
   /* --- BUTTONS --- */
   .plaque-btn {
-    position: relative; min-width: 200px; padding: 16px 28px; font-family: var(--premium-display); font-size: 18px; letter-spacing: 0.05em;
+    position: relative; min-width: 190px; padding: 15px 26px; font-family: var(--premium-display); font-size: 18px; letter-spacing: 0.05em;
     cursor: pointer; border: 1px solid var(--gold); transition: all 0.3s ease; background: transparent;
-    clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
+    clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px);
   }
   .plaque-btn.filled { background: linear-gradient(135deg, var(--gold-soft), var(--gold)); color: var(--primary-dark); font-weight: 600; border: none; box-shadow: 0 10px 20px rgba(203,161,83,0.2); }
   .plaque-btn.outline { background: transparent; color: var(--gold); }
@@ -138,22 +141,22 @@
 
   /* --- MUSIC PLAYER --- */
   .music-control {
-    position: fixed; bottom: 30px; right: 30px; z-index: 1000; width: 48px; height: 48px; border-radius: 50%;
+    position: fixed; bottom: 22px; right: 22px; z-index: 1000; width: 44px; height: 44px; border-radius: 50%;
     background: rgba(249, 248, 243, 0.95); backdrop-filter: blur(5px); border: 1px solid var(--gold);
-    display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: transform 0.3s ease;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;
   }
   .music-control:hover { transform: scale(1.08); }
-  .music-icon { color: var(--gold); font-size: 18px; font-weight: bold; }
+  .music-icon { color: var(--gold); font-size: 17px; font-weight: bold; }
   .music-control.playing { animation: spin-slow 8s linear infinite; border-color: var(--gold-soft); }
   @keyframes spin-slow { 100% { transform: rotate(360deg); } }
 
   /* --- HERO SECTION --- */
   .hero {
     background: radial-gradient(circle at center, #264A3D 0%, var(--primary-dark) 80%);
-    color: var(--bg-cream); padding: 90px 24px 75px; text-align: center; position: relative; overflow: hidden;
+    color: var(--bg-cream); padding: 72px 20px 64px; text-align: center; position: relative; overflow: hidden;
   }
-  .hero h1 { font-size: clamp(44px, 12vw, 76px); line-height: 1.1; margin: 18px 0; position: relative; z-index: 2; text-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-  .hero h1 i { font-family: var(--premium-script); color: var(--gold); font-size: 0.75em; font-style: normal; margin: 0 8px; }
+  .hero h1 { font-size: clamp(40px, 11vw, 72px); line-height: 1.12; margin: 14px 0; position: relative; z-index: 2; text-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+  .hero h1 i { font-family: var(--premium-script); color: var(--gold); font-size: 0.78em; font-style: normal; margin: 0 6px; }
   
   .particles { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
   .particle { position: absolute; background: var(--gold-soft); border-radius: 50%; opacity: 0; animation: floatUp infinite ease-in; box-shadow: 0 0 8px var(--gold-soft); }
@@ -165,7 +168,7 @@
 
   /* --- ELEGANT GANESHA FRAME --- */
   .ganesha-wrapper {
-    width: 115px; height: 115px; margin: 0 auto; position: relative; z-index: 2;
+    width: 104px; height: 104px; margin: 0 auto; position: relative; z-index: 2;
     border-radius: 50%; border: 2px solid var(--gold); padding: 4px;
     background: #FFFFFF;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
@@ -176,70 +179,97 @@
     filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.1); 
   }
 
-  /* --- SCRATCH SECTION --- */
-  .scratch-section { background: var(--bg-cream); padding: 75px 24px; text-align: center; }
-  .scratch-container { position: relative; margin: 35px auto 10px; width: 300px; height: 300px; display: flex; align-items: center; justify-content: center; }
+  /* --- TAP TO REVEAL (MOVED SLIGHTLY DOWN & OPTIMIZED FOR MOBILE) --- */
+  .scratch-container {
+    position: relative;
+    margin: 42px auto 0; /* Moved slightly down from heading */
+    width: min(276px, 76vw);
+    height: min(276px, 76vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .scratch-pulse-ring {
-    position: absolute; inset: -15px; border-radius: 50%; border: 1.5px solid var(--gold); opacity: 0; pointer-events: none; z-index: 0;
+    position: absolute; inset: -12px; border-radius: 50%; border: 1.5px solid var(--gold); opacity: 0; pointer-events: none; z-index: 0;
     animation: ringPulse 2.5s infinite ease-out;
   }
-  @keyframes ringPulse { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.15); opacity: 0; } }
+  @keyframes ringPulse { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.13); opacity: 0; } }
   
   .scratch-wrap {
     position: absolute; inset: 0; z-index: 1;
     background: radial-gradient(circle, var(--primary-light) 0%, var(--primary-dark) 100%);
     display: flex; align-items: center; justify-content: center; flex-direction: column;
-    border-radius: 50%; border: 2px solid var(--gold); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    border-radius: 50%; border: 2px solid var(--gold); overflow: hidden; box-shadow: 0 18px 36px rgba(0,0,0,0.14);
   }
-  .scratch-under { position: absolute; font-family: var(--premium-display); color: var(--bg-cream); }
-  .scratch-under .d { font-size: 64px; line-height: 1; color: var(--gold); text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-  .scratch-under .m { font-family: var(--premium-body); font-size: 12px; letter-spacing: 0.25em; color: var(--bg-cream); margin-top: 8px; }
-  .scratch-canvas { position: absolute; inset: 0; cursor: pointer; width: 100%; height: 100%; transition: opacity 0.8s ease; }
+  .scratch-under { position: absolute; font-family: var(--premium-display); color: var(--bg-cream); padding: 12px; }
+  .scratch-under .d { font-size: clamp(52px, 14vw, 62px); line-height: 1; color: var(--gold); text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+  .scratch-under .m { font-family: var(--premium-body); font-size: 11.5px; letter-spacing: 0.22em; color: var(--bg-cream); margin-top: 8px; }
+  .scratch-canvas { position: absolute; inset: 0; cursor: pointer; width: 100%; height: 100%; transition: opacity 0.8s ease; touch-action: manipulation; }
   
-  /* --- LUXURY COUNTDOWN --- */
-  .counter { display: flex; justify-content: center; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+  #scratchHint {
+    margin-top: 32px; /* Pushed slightly down to clear pulse ring */
+    color: var(--primary-dark);
+    letter-spacing: 0.28em;
+    font-size: 11px;
+    transition: opacity 0.5s ease;
+  }
+
+  /* --- LUXURY COUNTDOWN (SINGLE-ROW MOBILE OPTIMIZED) --- */
+  .counter {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(62px, 74px));
+    justify-content: center;
+    gap: 10px;
+    margin-top: 26px;
+  }
   .counter-item {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    width: 74px; height: 100px; background: var(--primary-dark); border: 1px solid var(--gold);
-    border-radius: 37px 37px 6px 6px; box-shadow: 0 12px 25px rgba(31,63,52,0.15); position: relative; overflow: hidden;
+    width: 100%; height: 94px; background: var(--primary-dark); border: 1px solid var(--gold);
+    border-radius: 37px 37px 6px 6px; box-shadow: 0 10px 22px rgba(31,63,52,0.14); position: relative; overflow: hidden;
   }
   .counter-item::after { content: ''; position: absolute; inset: 4px; border: 1px dashed rgba(203,161,83,0.5); border-radius: 33px 33px 4px 4px; pointer-events: none; }
-  .counter-item b { font-family: var(--premium-display); font-size: 38px; font-weight: 400; color: var(--bg-cream); line-height: 1; margin-top: 8px; z-index: 2; }
-  .counter-item span { font-size: 9.5px; letter-spacing: 0.15em; color: var(--gold-soft); margin-top: 6px; font-weight: 500; text-transform: uppercase; z-index: 2; }
+  .counter-item b { font-family: var(--premium-display); font-size: clamp(30px, 8vw, 36px); font-weight: 400; color: var(--bg-cream); line-height: 1; margin-top: 6px; z-index: 2; }
+  .counter-item span { font-size: 9px; letter-spacing: 0.14em; color: var(--gold-soft); margin-top: 6px; font-weight: 500; text-transform: uppercase; z-index: 2; }
 
   /* --- FROSTED GLASS CARDS --- */
-  .alt-bg { background: rgba(203, 161, 83, 0.04); }
   .card { 
-    background: rgba(31, 63, 52, 0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
-    border: 1px solid rgba(203, 161, 83, 0.35); padding: 45px 28px; margin-top: 30px; border-radius: 14px; 
-    box-shadow: 0 20px 45px rgba(0,0,0,0.15); position: relative; overflow: hidden;
+    background: rgba(31, 63, 52, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
+    border: 1px solid rgba(203, 161, 83, 0.35); padding: 36px 22px; margin-top: 22px; border-radius: 14px; 
+    box-shadow: 0 16px 36px rgba(0,0,0,0.13); position: relative; overflow: hidden;
   }
   .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(203,161,83,0.5), transparent); }
   
-  .venue-icon { width: 46px; height: 46px; color: var(--gold); margin: 0 auto 18px; display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); animation: floatIcon 4s ease-in-out infinite; }
-  @keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .venue-icon { width: 42px; height: 42px; color: var(--gold); margin: 0 auto 14px; display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); animation: floatIcon 4s ease-in-out infinite; }
+  @keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
-  .card h3 { font-size: 28px; margin: 8px 0; color: var(--bg-cream); text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-  .card p { font-size: 14.5px; color: rgba(249, 248, 243, 0.85); line-height: 1.65; letter-spacing: 0.02em; }
-  .card .time { font-family: var(--premium-display); font-size: 19px; font-style: italic; color: var(--gold-soft); margin-top: 12px; }
-  .card .action-link { display: inline-block; margin-top: 22px; font-size: 11.5px; letter-spacing: 0.15em; color: var(--gold); border-bottom: 1px solid rgba(203,161,83,0.4); padding-bottom: 3px; transition: color 0.3s, border-color 0.3s; }
+  .card h3 { font-size: clamp(24px, 6vw, 28px); margin: 6px 0; color: var(--bg-cream); text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+  .card p { font-size: 14px; color: rgba(249, 248, 243, 0.85); line-height: 1.6; letter-spacing: 0.02em; }
+  .card .time { font-family: var(--premium-display); font-size: 18px; font-style: italic; color: var(--gold-soft); margin-top: 10px; }
+  .card .action-link { display: inline-block; margin-top: 18px; font-size: 11px; letter-spacing: 0.15em; color: var(--gold); border-bottom: 1px solid rgba(203,161,83,0.4); padding-bottom: 3px; transition: color 0.3s, border-color 0.3s; }
   .card .action-link:hover { color: var(--bg-cream); border-color: var(--bg-cream); }
 
   /* --- TIMELINE --- */
-  .timeline-container { border-left: 1.5px dashed var(--gold); padding-left: 28px; text-align: left; position: relative; margin-left: 15px; }
-  .timeline-event { margin-bottom: 40px; position: relative; }
+  .timeline-container {
+    border-left: 1.5px dashed var(--gold);
+    padding-left: 26px;
+    text-align: left;
+    position: relative;
+    max-width: 340px;
+    margin: 28px auto 0;
+  }
+  .timeline-event { margin-bottom: 32px; position: relative; }
   .timeline-dot {
-    position: absolute; left: -35.2px; top: 5px; width: 13px; height: 13px; border-radius: 50%; 
+    position: absolute; left: -33px; top: 4px; width: 12px; height: 12px; border-radius: 50%; 
     background: var(--gold); animation: pulseGlow 2s infinite alternate; box-shadow: 0 0 10px var(--gold);
   }
   @keyframes pulseGlow { 0% { box-shadow: 0 0 5px rgba(203, 161, 83, 0.4); transform: scale(1); } 100% { box-shadow: 0 0 16px rgba(203, 161, 83, 0.95); transform: scale(1.15); } }
 
   /* --- PHOTO GALLERY --- */
-  .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 25px; }
-  .photo-main { grid-column: 1 / -1; height: 350px; border: 1.5px solid var(--gold); border-radius: 150px 150px 0 0; padding: 5px; background: var(--bg-cream); box-shadow: 0 15px 35px rgba(0,0,0,0.12); position: relative; }
-  .photo-sub { height: 190px; border: 1.5px solid var(--gold); border-radius: 8px; padding: 4px; background: var(--bg-cream); box-shadow: 0 10px 25px rgba(0,0,0,0.08); position: relative; overflow: hidden; }
+  .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .photo-main { grid-column: 1 / -1; height: clamp(270px, 68vw, 340px); border: 1.5px solid var(--gold); border-radius: 140px 140px 0 0; padding: 5px; background: var(--bg-cream); box-shadow: 0 14px 30px rgba(0,0,0,0.11); position: relative; }
+  .photo-sub { height: clamp(145px, 38vw, 185px); border: 1.5px solid var(--gold); border-radius: 8px; padding: 4px; background: var(--bg-cream); box-shadow: 0 8px 20px rgba(0,0,0,0.08); position: relative; overflow: hidden; }
   
-  .slideshow-wrapper { position: absolute; inset: 5px; border-radius: 144px 144px 0 0; overflow: hidden; background: rgba(203,161,83,0.1); z-index: 1; }
+  .slideshow-wrapper { position: absolute; inset: 5px; border-radius: 134px 134px 0 0; overflow: hidden; background: rgba(203,161,83,0.1); z-index: 1; }
   .slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: fadeSlide 12s infinite ease-in-out; }
   .slide.s1 { animation-delay: 0s; }
   .slide.s2 { animation-delay: 4s; }
@@ -248,47 +278,76 @@
 
   .photo-sub img { width: 100%; height: 100%; object-fit: cover; border-radius: 5px; background: rgba(203,161,83,0.1); position: relative; z-index: 1; animation: slowZoom 18s alternate infinite ease-in-out; }
   @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.12); } }
-  .placeholder-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--premium-body); font-size: 10.5px; letter-spacing: 0.15em; color: var(--primary-light); text-align: center; padding: 15px; z-index: 0; }
+  .placeholder-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--premium-body); font-size: 10px; letter-spacing: 0.14em; color: var(--primary-light); text-align: center; padding: 12px; z-index: 0; }
 
   /* --- STYLISH GALLERY CLOSING MOTIF --- */
   .gallery-closing {
     font-family: var(--premium-display);
-    font-size: 19px;
+    font-size: clamp(17px, 4.5vw, 19px);
     font-style: italic;
     color: var(--primary-dark);
-    letter-spacing: 0.03em;
-    margin-top: 20px;
+    letter-spacing: 0.02em;
+    margin-top: 12px;
     position: relative;
     display: inline-block;
+    line-height: 1.4;
   }
   .gallery-closing::before, .gallery-closing::after {
     content: "•";
     color: var(--gold);
-    margin: 0 10px;
+    margin: 0 8px;
     font-style: normal;
   }
 
   /* --- RSVP --- */
   .panel { display: none; }
   .panel.active { display: block; animation: fadeIn 0.5s ease; }
-  .rsvp-heading { font-family: var(--premium-script); font-size: 60px; color: var(--gold); margin: 0 0 8px; line-height: 1; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-  .rsvp-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
-  .field-label { text-align: left; font-family: var(--premium-body); font-weight: 500; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px; color: var(--gold-soft); }
-  .field-input { width: 100%; padding: 16px 14px; font-family: var(--premium-body); font-size: 15px; border: 1px solid rgba(203,161,83,0.3); border-radius: 6px; margin-bottom: 20px; background: rgba(255,255,255,0.06); color: var(--bg-cream); transition: border-color 0.3s; }
+  .rsvp-heading { font-family: var(--premium-script); font-size: clamp(46px, 11vw, 56px); color: var(--gold); margin: 0 0 6px; line-height: 1.05; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+  .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+  .field-label { text-align: left; font-family: var(--premium-body); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px; color: var(--gold-soft); }
+  /* 16px font-size prevents iOS Safari auto-zoom on input focus */
+  .field-input { width: 100%; padding: 15px 14px; font-family: var(--premium-body); font-size: 16px; border: 1px solid rgba(203,161,83,0.3); border-radius: 6px; margin-bottom: 18px; background: rgba(255,255,255,0.06); color: var(--bg-cream); transition: border-color 0.3s; }
   .field-input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.1); }
   .field-input::placeholder { color: rgba(255,255,255,0.3); }
-  .guest-stepper { width: 100%; height: 56px; display: grid; grid-template-columns: 56px 1fr 56px; align-items: center; border: 1px solid rgba(203,161,83,0.3); border-radius: 6px; background: rgba(255,255,255,0.06); margin-bottom: 20px; }
-  .guest-step-btn { height: 100%; border: 0; background: transparent; color: var(--gold); font-family: Georgia, serif; font-size: 26px; cursor: pointer; transition: background 0.2s ease; }
+  .guest-stepper { width: 100%; height: 54px; display: grid; grid-template-columns: 54px 1fr 54px; align-items: center; border: 1px solid rgba(203,161,83,0.3); border-radius: 6px; background: rgba(255,255,255,0.06); margin-bottom: 18px; }
+  .guest-step-btn { height: 100%; border: 0; background: transparent; color: var(--gold); font-family: Georgia, serif; font-size: 24px; cursor: pointer; transition: background 0.2s ease; }
   .guest-step-btn:hover { background: rgba(203,161,83,0.15); }
-  #rsvpCount { width: 100%; height: 100%; border: 0; border-left: 1px solid rgba(203,161,83,0.2); border-right: 1px solid rgba(203,161,83,0.2); background: transparent; text-align: center; color: var(--bg-cream); font-family: var(--premium-display); font-size: 24px; font-weight: 600; appearance: textfield; -moz-appearance: textfield; }
+  #rsvpCount { width: 100%; height: 100%; border: 0; border-left: 1px solid rgba(203,161,83,0.2); border-right: 1px solid rgba(203,161,83,0.2); background: transparent; text-align: center; color: var(--bg-cream); font-family: var(--premium-display); font-size: 22px; font-weight: 600; appearance: textfield; -moz-appearance: textfield; }
   #rsvpCount::-webkit-inner-spin-button, #rsvpCount::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-  .stacked-btn { width: 100%; margin-bottom: 14px; display: block; }
-  .notice-box { padding: 25px; border: 1px solid var(--gold); font-size: 18px; color: var(--gold); border-radius: 8px; background: rgba(203,161,83,0.05); }
+  .stacked-btn { width: 100%; margin-bottom: 12px; display: block; }
+  .notice-box { padding: 22px 18px; border: 1px solid var(--gold); font-size: 17px; color: var(--gold); border-radius: 8px; background: rgba(203,161,83,0.05); line-height: 1.5; }
 
   /* --- FOOTER --- */
-  footer { background: var(--primary-dark); color: var(--bg-cream); text-align: center; padding: 65px 24px 85px; position: relative; z-index: 2; border-top: 1px solid rgba(203,161,83,0.2); }
-  footer h2 { color: var(--gold); font-size: 32px; margin-top: 12px; letter-spacing: 0.05em; }
-  
+  footer { background: var(--primary-dark); color: var(--bg-cream); text-align: center; padding: 54px 20px 76px; position: relative; z-index: 2; border-top: 1px solid rgba(203,161,83,0.2); }
+  footer h2 { color: var(--gold); font-size: clamp(26px, 7vw, 32px); margin-top: 10px; letter-spacing: 0.05em; }
+
+  /* --- MOBILE-SPECIFIC REFINEMENTS --- */
+  @media (max-width: 480px) {
+    .page-frame-outer { inset: 8px; border-radius: 10px; }
+    .page-frame-inner { inset: 12px; border-radius: 7px; }
+    .app-container { inset: 8px; border-radius: 10px; }
+    #envelopeStage { inset: 8px; border-radius: 10px; }
+
+    .hero { padding: 58px 18px 50px; }
+    .ganesha-wrapper { width: 96px; height: 96px; }
+    .wrap { padding: 42px 18px; }
+
+    /* Extra breathing room around Tap to Reveal on phone screens */
+    .scratch-container {
+      margin: 44px auto 0;
+      width: min(260px, 74vw);
+      height: min(260px, 74vw);
+    }
+    #scratchHint { margin-top: 34px; }
+
+    .counter { gap: 8px; margin-top: 22px; }
+    .counter-item { height: 88px; }
+
+    .card { padding: 30px 18px; margin-top: 18px; }
+    .rsvp-buttons .plaque-btn { width: 100%; }
+
+    .music-control { bottom: 18px; right: 18px; width: 42px; height: 42px; }
+  }
 </style>
 </head>
 <body>
@@ -326,10 +385,10 @@
       <img src="golden-ganesha-icon-vector-43861836.jpg" alt="Lord Ganesha" class="ganesha-img">
     </div>
     
-    <div class="fade-in" style="margin-top: 40px; position: relative; z-index: 2; transition-delay: 0.2s;">
+    <div class="fade-in" style="margin-top: 32px; position: relative; z-index: 2; transition-delay: 0.2s;">
       <div class="label" style="color:var(--gold-soft);">TOGETHER WITH THEIR FAMILIES & FRIENDS</div>
       <h1 class="shimmer-cream">Aiswarya <i>&</i> Amith</h1>
-      <p style="font-family:var(--premium-display); font-size:21px; color:var(--gold-soft); font-style:italic;">are getting married</p>
+      <p style="font-family:var(--premium-display); font-size:20px; color:var(--gold-soft); font-style:italic;">are getting married</p>
     </div>
   </header>
 
@@ -337,14 +396,16 @@
     <!-- INTRO -->
     <section class="wrap fade-in">
       <p class="script">Our forever begins</p>
-      <h2 style="margin-top:8px; font-size: 32px;">A SACRED BEGINNING</h2>
-      <p style="margin-top: 22px; line-height: 1.75; color: rgba(42,42,42,0.85); font-size: 15px;">Two families, two hearts, one sacred journey. We would be blessed to have you with us as we take our first steps together.</p>
+      <h2 class="section-title">A SACRED BEGINNING</h2>
+      <p style="margin-top: 16px; line-height: 1.7; color: rgba(42,42,42,0.85); font-size: 14.5px;">Two families, two hearts, one sacred journey. We would be blessed to have you with us as we take our first steps together.</p>
     </section>
 
+    <div class="divider fade-in"><span></span></div>
+
     <!-- TAP TO REVEAL -->
-    <section class="wrap fade-in" style="padding-top: 10px;">
+    <section class="wrap fade-in">
       <p class="script">Save the date</p>
-      <h2 style="font-size:32px; margin-top:8px;">A LITTLE SURPRISE</h2>
+      <h2 class="section-title">A LITTLE SURPRISE</h2>
       
       <div class="scratch-container fade-in">
         <div class="scratch-pulse-ring"></div>
@@ -353,20 +414,21 @@
             <div class="label" style="color:var(--gold-soft); margin-bottom:6px;">SAVE THE DATE</div>
             <div class="d shimmer-gold">20</div>
             <div class="m">DECEMBER · 2026</div>
-            <div style="font-style:italic; margin-top:14px; font-size:19px; color:var(--gold-soft);">Aiswarya & Amith</div>
+            <div style="font-style:italic; margin-top:12px; font-size:18px; color:var(--gold-soft);">Aiswarya & Amith</div>
           </div>
           <canvas class="scratch-canvas" id="scratchCanvas" width="300" height="300"></canvas>
         </div>
       </div>
       
-      <div class="label fade-in" id="scratchHint" style="margin-top:22px; color:var(--primary-dark);">TAP TO REVEAL</div>
+      <div class="label fade-in" id="scratchHint">TAP TO REVEAL</div>
     </section>
+
+    <div class="divider fade-in"><span></span></div>
 
     <!-- COUNTDOWN -->
     <section class="wrap fade-in">
-      <div class="divider"><span></span></div>
       <p class="script">Counting down</p>
-      <h2 style="font-size: 32px; margin-top:8px;">UNTIL FOREVER</h2>
+      <h2 class="section-title">UNTIL FOREVER</h2>
       
       <div class="counter">
         <div class="counter-item"><b id="cd-d">00</b><span>Days</span></div>
@@ -374,15 +436,15 @@
         <div class="counter-item"><b id="cd-m">00</b><span>Min</span></div>
         <div class="counter-item"><b id="cd-s">00</b><span>Sec</span></div>
       </div>
-      
-      <div class="divider" style="margin-bottom: 0;"><span></span></div>
     </section>
 
+    <div class="divider fade-in"><span></span></div>
+
     <!-- VENUES -->
-    <section class="wrap" style="padding-top: 40px;">
+    <section class="wrap">
       <div class="fade-in">
         <p class="script">Where to be</p>
-        <h2 style="font-size: 32px; margin-top:8px;">WEDDING & RECEPTION</h2>
+        <h2 class="section-title">WEDDING & RECEPTION</h2>
       </div>
       
       <div class="card fade-in">
@@ -408,34 +470,36 @@
       </div>
     </section>
 
+    <div class="divider fade-in"><span></span></div>
+
     <!-- TIMELINE -->
     <section class="wrap">
       <div class="fade-in">
         <p class="script">The day unfolds</p>
-        <h2 style="font-size: 32px; margin-top:8px; margin-bottom: 40px;">WEDDING TIMELINE</h2>
+        <h2 class="section-title">WEDDING TIMELINE</h2>
       </div>
       
       <div class="timeline-container">
         <div class="timeline-event fade-in">
           <div class="timeline-dot"></div>
           <div class="label" style="color:var(--primary-dark);">11:30 AM</div>
-          <h3 style="font-size:24px; margin:4px 0;">Marriage</h3>
-          <p style="color: rgba(42,42,42,0.8); line-height: 1.6;">The sacred moment.</p>
+          <h3 style="font-size:23px; margin:3px 0;">Marriage</h3>
+          <p style="color: rgba(42,42,42,0.8); line-height: 1.55; font-size: 14px;">The sacred moment.</p>
         </div>
         
         <div class="timeline-event fade-in" style="margin-bottom: 0;">
           <div class="timeline-dot"></div>
           <div class="label" style="color:var(--primary-dark);">6:00 PM</div>
-          <h3 style="font-size:24px; margin:4px 0;">Reception</h3>
-          <p style="color: rgba(42,42,42,0.8); line-height: 1.6;">An evening of love, laughter, and celebration.</p>
+          <h3 style="font-size:23px; margin:3px 0;">Reception</h3>
+          <p style="color: rgba(42,42,42,0.8); line-height: 1.55; font-size: 14px;">An evening of love, laughter, and celebration.</p>
         </div>
       </div>
     </section>
 
+    <div class="divider fade-in"><span></span></div>
+
     <!-- PHOTO GALLERY -->
     <section class="wrap fade-in">
-      <div class="divider" style="margin-top: 40px;"><span></span></div>
-      
       <div class="gallery-grid">
         <div class="photo-main">
           <div class="placeholder-text">Main Slideshow<br><br>Add: slide1.jpg, slide2.jpg, slide3.jpg</div>
@@ -458,17 +522,18 @@
       <div class="gallery-closing">We can't wait to share our special day with you</div>
     </section>
 
+    <div class="divider fade-in"><span></span></div>
+
     <!-- RSVP -->
-    <section id="rsvp" class="wrap" style="padding-bottom: 100px;">
+    <section id="rsvp" class="wrap" style="padding-bottom: 64px;">
       <div class="fade-in">
         <p class="script">Join us</p>
-        <h2 style="font-size: 32px; margin-top:8px;">KINDLY RSVP</h2>
+        <h2 class="section-title">KINDLY RSVP</h2>
       </div>
 
-      <div class="card fade-in" style="max-width: 480px; margin: 30px auto 0; padding: 50px 26px;">
+      <div class="card fade-in" style="max-width: 460px; margin: 22px auto 0; padding: 38px 22px;">
         <div id="panel-ask" class="panel active">
           <h2 class="rsvp-heading shimmer-gold">Will you join us?</h2>
-          <p style="font-size: 17px; color: rgba(249,248,243,0.85); margin-bottom: 30px; line-height: 1.6;">Kindly let us know by 10th December,<br>so we can save you a spot.</p>
           <div class="rsvp-buttons">
             <button class="plaque-btn filled" onclick="showPanel('panel-name')">Yes, I'll be there</button>
             <button class="plaque-btn outline" onclick="showPanel('panel-decline')">No, I can't make it</button>
@@ -480,22 +545,22 @@
         </div>
 
         <div id="panel-name" class="panel">
-          <h2 class="rsvp-heading shimmer-gold" style="font-size: 48px;">We're so glad!</h2>
-          <p style="margin-bottom: 30px; font-size:17px; color: rgba(249,248,243,0.85);">Let us know who's joining the celebration.</p>
+          <h2 class="rsvp-heading shimmer-gold" style="font-size: clamp(38px, 10vw, 46px);">We're so glad!</h2>
+          <p style="margin-bottom: 24px; font-size:15.5px; color: rgba(249,248,243,0.85);">Let us know who's joining the celebration.</p>
           <div style="text-align: left;">
             <div class="field-label">Your Name</div>
             <input id="guestName" class="field-input" type="text" placeholder="Enter full name" required>
 
-            <div class="field-label" style="margin-top:8px;">Number of Guests</div>
+            <div class="field-label" style="margin-top:4px;">Number of Guests</div>
             <div class="guest-stepper">
               <button type="button" class="guest-step-btn" id="guestMinus">−</button>
               <input id="rsvpCount" type="number" value="1" min="1" readonly>
               <button type="button" class="guest-step-btn" id="guestPlus">+</button>
             </div>
-            <p style="text-align:center; font-size:12.5px; color: rgba(249,248,243,0.5); margin-top:-14px; margin-bottom:24px;">Including yourself</p>
+            <p style="text-align:center; font-size:12px; color: rgba(249,248,243,0.5); margin-top:-10px; margin-bottom:20px;">Including yourself</p>
 
             <button class="plaque-btn filled stacked-btn" id="btnConfirmRSVP">Confirm RSVP</button>
-            <button class="plaque-btn outline stacked-btn" onclick="showPanel('panel-ask')">Cancel</button>
+            <button class="plaque-btn outline stacked-btn" style="margin-bottom: 0;" onclick="showPanel('panel-ask')">Cancel</button>
           </div>
         </div>
 
@@ -508,7 +573,7 @@
     <footer>
       <p class="script" style="color:var(--bg-cream);">With love</p>
       <h2 class="shimmer-gold">AISWARYA <i>&</i> AMITH</h2>
-      <div style="font-family: var(--premium-display); font-size: 22px; color: var(--gold-soft); margin-top: 12px; font-style: italic;">Friends & Family</div>
+      <div style="font-family: var(--premium-display); font-size: 20px; color: var(--gold-soft); margin-top: 8px; font-style: italic;">Friends & Family</div>
     </footer>
     
   </main>
@@ -522,8 +587,8 @@
     
     const appearOptions = { 
       root: scrollContainer,
-      threshold: 0.15, 
-      rootMargin: "0px 0px -20px 0px" 
+      threshold: 0.12, 
+      rootMargin: "0px 0px -15px 0px" 
     };
     
     const appearOnScroll = new IntersectionObserver(function(entries, observer) {
@@ -588,10 +653,11 @@
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
-  ctx.fillStyle = 'rgba(255,255,255,0.85)';
-  ctx.font = '500 15px Montserrat';
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.font = '500 14px Montserrat';
   ctx.textAlign = 'center';
-  ctx.fillText('T A P   T O   R E V E A L', 150, 150);
+  ctx.textBaseline = 'middle';
+  ctx.fillText('T A P   T O   R E V E A L', 150, 154);
 
   function revealDate() {
     canvas.style.opacity = '0';
