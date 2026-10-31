@@ -98,7 +98,7 @@
 
   h1, h2, h3, .display-text { font-family: var(--premium-display); font-weight: 500; color: var(--primary-dark); }
   .script { font-family: var(--premium-script); font-size: clamp(38px, 9vw, 46px); color: var(--primary-dark); line-height: 1.05; margin-bottom: -4px; text-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
-  .section-title { font-size: clamp(26px, 6.5vw, 32px); margin-top: 6px; letter-spacing: 0.03em; }
+  .section-title { font-size: clamp(38px, 9vw, 46px); margin-top: -4px; font-family: var(--premium-script); font-weight: normal; color: var(--primary-dark); }
   .label { font-family: var(--premium-body); font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; font-size: 13px; color: var(--gold); line-height: 1.6; }
   a { text-decoration: none; color: inherit; }
 
@@ -228,9 +228,11 @@
     display: flex; align-items: center; justify-content: center; flex-direction: column;
     border-radius: 50%; border: 2px solid var(--gold); overflow: hidden; box-shadow: 0 18px 36px rgba(0,0,0,0.14);
   }
-  .scratch-under { position: absolute; font-family: var(--premium-display); color: var(--bg-cream); padding: 12px; text-align: center; }
-  .scratch-under .d { font-size: clamp(40px, 11vw, 50px); line-height: 1.1; color: var(--bg-cream); text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-  .scratch-under .m { font-family: var(--premium-body); font-size: 11px; letter-spacing: 0.16em; color: var(--gold-soft); margin-top: 6px; text-transform: uppercase; }
+  .scratch-under { position: absolute; font-family: var(--premium-display); color: var(--bg-cream); padding: 12px; text-align: center; width: 85%; }
+  .scratch-under .scratch-label { font-family: var(--premium-body); font-weight: 500; font-size: 11px; letter-spacing: 0.2em; color: var(--gold-soft); margin-bottom: 2px; text-transform: uppercase; }
+  .scratch-under .d { font-size: clamp(52px, 14vw, 64px); line-height: 1.05; color: var(--bg-cream); text-shadow: 0 4px 10px rgba(0,0,0,0.3); display: flex; align-items: flex-start; justify-content: center; }
+  .scratch-under .d sup { font-size: 0.38em; font-family: var(--premium-body); font-weight: 500; margin-left: 2px; margin-top: 8px; vertical-align: super; color: var(--gold-soft); }
+  .scratch-under .m { font-family: var(--premium-body); font-size: 12.5px; letter-spacing: 0.18em; color: var(--gold-soft); margin-top: 4px; text-transform: uppercase; font-weight: 500; }
   .scratch-canvas { position: absolute; inset: 0; cursor: pointer; width: 100%; height: 100%; transition: opacity 0.8s ease; touch-action: manipulation; }
 
   #scratchHint { margin-top: 32px; color: var(--primary-dark); letter-spacing: 0.28em; transition: opacity 0.5s ease; }
@@ -423,8 +425,8 @@
         <div class="scratch-pulse-ring" aria-hidden="true"></div>
         <div class="scratch-wrap" id="scratchWrap">
           <div class="scratch-under">
-            <div class="label" style="color:var(--gold-soft); margin-bottom:4px; font-size:11px;">Save the date</div>
-            <div class="d shimmer-white">20</div>
+            <div class="scratch-label">Save the date</div>
+            <div class="d shimmer-white">20<sup>th</sup></div>
             <div class="m shimmer-white">DECEMBER 2026</div>
           </div>
           <canvas class="scratch-canvas" id="scratchCanvas" width="300" height="300" role="button" tabindex="0" aria-label="Tap to reveal the wedding date"></canvas>
@@ -464,7 +466,7 @@
         <div class="label">WEDDING CEREMONY</div>
         <h3>Sangamam Auditorium</h3>
         <p>Thalassery, Kannur, Kerala</p>
-        <div class="time">20 December 2026<br>11:30 AM – 12:00 PM</div>
+        <div class="time">20<sup>th</sup> December 2026<br>11:30 AM – 12:00 PM</div>
         <a class="action-link" href="https://maps.app.goo.gl/j9kko8fcZibu9Lic9" target="_blank" rel="noopener noreferrer">OPEN IN MAPS →</a>
       </div>
 
@@ -475,7 +477,7 @@
         <div class="label">RECEPTION</div>
         <h3>Kalharam House</h3>
         <p>Illathuthazhe, Thalassery, Kerala</p>
-        <div class="time">20 December 2026<br>6:00 PM – 9:00 PM</div>
+        <div class="time">20<sup>th</sup> December 2026<br>6:00 PM – 9:00 PM</div>
         <a class="action-link" href="https://maps.app.goo.gl/AKWLbuikaaqMMzno6" target="_blank" rel="noopener noreferrer">OPEN IN MAPS →</a>
       </div>
     </section>
@@ -565,7 +567,7 @@
               <button type="button" class="guest-step-btn" id="guestPlus" aria-label="Increase guests">+</button>
             </div>
             <p style="text-align:center; font-size:13px; color: rgba(249,248,243,0.65); margin-top:-10px; margin-bottom:20px;">Including yourself</p>
-            <div class="field-error" id="sendError" role="alert" style="text-align:center;"></div>
+            <div class="field-error" id="sendError" role="alert" style="text-align:center;">Type connection error message here if needed.</div>
 
             <button type="submit" class="plaque-btn filled stacked-btn" id="btnConfirmRSVP">Confirm RSVP</button>
             <button type="button" class="plaque-btn outline stacked-btn" style="margin-bottom: 0;" data-panel="panel-ask">Cancel</button>
@@ -733,7 +735,7 @@
     c.fillStyle = 'rgba(255,255,255,0.95)';
     c.font = '500 14px Montserrat, sans-serif';
     c.textAlign = 'center'; c.textBaseline = 'middle';
-    c.fillText('T A P    T O    R E V E A L', size / 2, size / 2);
+    c.fillText('T A P    T O    R E V EAL', size / 2, size / 2);
   }
   // Draw once the web font is ready so the text isn't in a fallback font
   if (document.fonts && document.fonts.load) { document.fonts.load('500 14px Montserrat').then(drawCover, drawCover); }
