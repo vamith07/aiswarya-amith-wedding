@@ -144,13 +144,13 @@
   /* outer thin ring */
   .wax-seal::after { content: ''; position: absolute; inset: -14px; border: 1px solid rgba(203,161,83,0.45); border-radius: 50%; pointer-events: none; }
   .wax-seal-text {
-    font-family: var(--premium-script); font-size: clamp(92px, 27vw, 120px); line-height: 1; z-index: 2;
+    font-family: var(--premium-script); font-size: clamp(74px, 21vw, 96px); line-height: 1; z-index: 2;
     display: flex; align-items: center; justify-content: center;
-    transform: translateX(-4px); /* optically centers the whole monogram inside the circle */
+    transform: translateX(-3px); /* optically centers the whole monogram inside the circle */
   }
   .wax-seal-text span {
     font-family: var(--premium-display); font-style: normal; font-size: 0.44em;
-    margin-left: 18px; margin-right: 4px; /* offsets the wide right tail of the cursive 'A' */
+    margin-left: 15px; margin-right: 4px; /* offsets the wide right tail of the cursive 'A' */
     color: var(--gold-soft); -webkit-text-fill-color: var(--gold-soft); opacity: 0.95;
   }
 
@@ -347,7 +347,7 @@
   /* Short phones: slightly smaller seal so the button stays on screen */
   @media (max-height: 640px) {
     .wax-seal { width: min(210px, 58vw); height: min(210px, 58vw); }
-    .wax-seal-text { font-size: clamp(74px, 22vw, 92px); }
+    .wax-seal-text { font-size: clamp(60px, 18vw, 76px); }
   }
 
   /* Respect "reduce motion" device setting (also saves battery) */
