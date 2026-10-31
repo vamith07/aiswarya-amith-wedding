@@ -304,3 +304,518 @@
   .field-label { display: block; text-align: left; font-family: var(--premium-body); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px; color: var(--gold-soft); }
   .field-input { width: 100%; padding: 15px 14px; font-family: var(--premium-body); font-size: 16px; border: 1px solid rgba(203,161,83,0.3); border-radius: 6px; margin-bottom: 18px; background: rgba(255,255,255,0.06); color: var(--bg-cream); transition: border-color 0.3s; }
   .field-input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.1); }
+  .field-input::placeholder { color: rgba(255,255,255,0.45); }
+  .field-input.invalid { border-color: #E58C7B; }
+  .field-error { color: #F2B3A6; font-size: 13px; text-align: left; margin: -10px 0 16px; min-height: 0; }
+  .field-error:empty { display: none; }
+  .guest-stepper { width: 100%; height: 54px; display: grid; grid-template-columns: 54px 1fr 54px; align-items: center; border: 1px solid rgba(203,161,83,0.3); border-radius: 6px; background: rgba(255,255,255,0.06); margin-bottom: 18px; }
+  .guest-step-btn { height: 100%; border: 0; background: transparent; color: var(--gold); font-family: Georgia, serif; font-size: 24px; cursor: pointer; transition: background 0.2s ease; }
+  .guest-step-btn:hover { background: rgba(203,161,83,0.15); }
+  #rsvpCount { width: 100%; height: 100%; border: 0; border-left: 1px solid rgba(203,161,83,0.2); border-right: 1px solid rgba(203,161,83,0.2); background: transparent; text-align: center; color: var(--bg-cream); font-family: var(--premium-display); font-size: 22px; font-weight: 600; appearance: textfield; -moz-appearance: textfield; }
+  #rsvpCount::-webkit-inner-spin-button, #rsvpCount::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  .stacked-btn { width: 100%; margin-bottom: 12px; display: block; }
+  .notice-box { padding: 22px 18px; border: 1px solid var(--gold); font-size: 17px; color: var(--gold-soft); border-radius: 8px; background: rgba(203,161,83,0.05); line-height: 1.5; }
+
+  footer { background: var(--primary-dark); color: var(--bg-cream); text-align: center; padding: 54px 20px 76px; position: relative; z-index: 2; border-top: 1px solid rgba(203,161,83,0.2); }
+  footer h2 { color: var(--gold); font-size: clamp(26px, 7vw, 32px); margin-top: 10px; letter-spacing: 0.05em; }
+  footer h2 i { color: var(--gold-soft); -webkit-text-fill-color: var(--gold-soft); font-style: italic; }
+
+  @media (max-width: 480px) {
+    .page-frame-outer { inset: 8px; border-radius: 10px; }
+    .page-frame-inner { inset: 12px; border-radius: 7px; }
+    .app-container { inset: 8px; border-radius: 10px; }
+    #envelopeStage { inset: 8px; border-radius: 10px; }
+    .hero { padding: 58px 18px 50px; }
+    .ganesha-wrapper { width: 96px; height: 96px; }
+    .wrap { padding: 42px 18px; }
+    .scratch-container { margin: 44px auto 0; width: min(260px, 74vw); height: min(260px, 74vw); }
+    #scratchHint { margin-top: 34px; }
+    .counter { gap: 8px; margin-top: 22px; }
+    .counter-item { height: 88px; }
+    .card { padding: 30px 18px; margin-top: 18px; }
+    .rsvp-buttons .plaque-btn { width: 100%; }
+    .music-control { bottom: 18px; right: 18px; width: 44px; height: 44px; }
+  }
+
+  /* Respect "reduce motion" device setting (also saves battery) */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    .fade-in { opacity: 1; transform: none; }
+    .shimmer-gold, .shimmer-cream { background-position: 50% center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-frame-outer" aria-hidden="true"></div>
+<div class="page-frame-inner" aria-hidden="true"></div>
+
+<div class="app-container">
+
+  <!-- ENVELOPE INTRO -->
+  <div id="envelopeStage" role="dialog" aria-label="Wedding invitation">
+    <div class="wax-seal" aria-hidden="true">
+      <div class="wax-seal-text shimmer-gold">A<span>&amp;</span>A</div>
+    </div>
+    <button type="button" class="plaque-btn outline btn-pulse" id="openInviteBtn">Tap to Open</button>
+  </div>
+
+  <!-- MUSIC
+       To change the song: replace wedding-music.mp3 in the repo with your new file
+       (keep the same name), or change the src below to the new file name.
+       Tip: keep it under ~3 MB (128 kbps, about 3 minutes). -->
+  <button type="button" class="music-control" id="musicBtn" aria-label="Play music" aria-pressed="false">
+    <span class="music-icon" id="musicIcon" aria-hidden="true">♪</span>
+  </button>
+  <audio id="weddingMusic" loop preload="none">
+    <source src="wedding-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <header class="hero">
+    <div class="particles" aria-hidden="true">
+      <div class="particle p1"></div><div class="particle p2"></div>
+      <div class="particle p3"></div><div class="particle p4"></div>
+    </div>
+
+    <div class="ganesha-wrapper fade-in">
+      <img src="golden-ganesha-icon-vector-43861836.jpg" alt="Lord Ganesha" class="ganesha-img" width="96" height="96" decoding="async">
+    </div>
+
+    <div class="fade-in" style="margin-top: 32px; position: relative; z-index: 2; transition-delay: 0.2s;">
+      <div class="label" style="color:var(--gold-soft);">TOGETHER WITH THEIR FAMILIES &amp; FRIENDS</div>
+      <h1 class="shimmer-cream">Aiswarya <i>&amp;</i> Amith</h1>
+      <p style="font-family:var(--premium-display); font-size:20px; color:var(--gold-soft); font-style:italic;">are getting married</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- INTRO -->
+    <section class="wrap fade-in">
+      <p class="script">Our forever begins</p>
+      <h2 class="section-title">CELEBRATING LOVE</h2>
+      <p style="margin-top: 16px; line-height: 1.7; color: rgba(42,42,42,0.88); font-size: 15px;">Love brought us together, and your blessings will light our way. Join us as we celebrate the start of our forever.</p>
+    </section>
+
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
+
+    <!-- TAP TO REVEAL -->
+    <section class="wrap fade-in">
+      <p class="script">Save the date</p>
+      <h2 class="section-title">A LITTLE SURPRISE</h2>
+
+      <div class="scratch-container fade-in">
+        <div class="scratch-pulse-ring" aria-hidden="true"></div>
+        <div class="scratch-wrap" id="scratchWrap">
+          <div class="scratch-under">
+            <div class="label" style="color:var(--gold-soft); margin-bottom:6px;">SAVE THE DATE</div>
+            <div class="d shimmer-gold">20</div>
+            <div class="m">DECEMBER · 2026</div>
+            <div style="font-style:italic; margin-top:14px; font-size:19px; color:var(--gold-soft);">Aiswarya &amp; Amith</div>
+          </div>
+          <canvas class="scratch-canvas" id="scratchCanvas" width="300" height="300" role="button" tabindex="0" aria-label="Tap to reveal the wedding date"></canvas>
+        </div>
+      </div>
+
+      <div class="label fade-in" id="scratchHint">TAP THE GOLD CIRCLE</div>
+    </section>
+
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
+
+    <!-- COUNTDOWN -->
+    <section class="wrap fade-in">
+      <p class="script">Counting down</p>
+      <h2 class="section-title">UNTIL FOREVER</h2>
+
+      <div class="counter" role="timer" aria-label="Countdown to the wedding">
+        <div class="counter-item"><b id="cd-d">00</b><span>Days</span></div>
+        <div class="counter-item"><b id="cd-h">00</b><span>Hours</span></div>
+        <div class="counter-item"><b id="cd-m">00</b><span>Min</span></div>
+        <div class="counter-item"><b id="cd-s">00</b><span>Sec</span></div>
+      </div>
+
+      <div class="cal-wrap">
+        <button type="button" class="plaque-btn outline dark" id="addCalBtn">Add to Calendar</button>
+      </div>
+    </section>
+
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
+
+    <!-- VENUES -->
+    <section class="wrap">
+      <div class="fade-in">
+        <p class="script">Where to be</p>
+        <h2 class="section-title">WEDDING &amp; RECEPTION</h2>
+      </div>
+
+      <div class="card fade-in">
+        <svg class="venue-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 60h56M12 60V32M52 60V32M24 60V32M40 60V32M32 32v28M8 32h48l-24-16z"/><path d="M32 16L8 32M32 16l24 16"/>
+        </svg>
+        <div class="label">WEDDING CEREMONY</div>
+        <h3>Sangamam Auditorium</h3>
+        <p>Thalassery, Kannur, Kerala</p>
+        <div class="time">Sunday, 20 December 2026<br>11:30 AM – 12:00 PM</div>
+        <a class="action-link" href="https://maps.app.goo.gl/j9kko8fcZibu9Lic9" target="_blank" rel="noopener noreferrer">OPEN IN MAPS →</a>
+      </div>
+
+      <div class="card fade-in">
+        <svg class="venue-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M8 60h48M16 60V28M48 60V28"/><path d="M32 12L4 32M32 12l28 20"/><path d="M26 60V40h12v20M16 28l16-12 16 12"/><rect x="20" y="34" width="8" height="8"/><rect x="36" y="34" width="8" height="8"/>
+        </svg>
+        <div class="label">RECEPTION</div>
+        <h3>Kalharam House</h3>
+        <p>Illathuthazhe, Thalassery, Kerala</p>
+        <div class="time">Sunday, 20 December 2026<br>6:00 PM – 9:00 PM</div>
+        <a class="action-link" href="https://maps.app.goo.gl/AKWLbuikaaqMMzno6" target="_blank" rel="noopener noreferrer">OPEN IN MAPS →</a>
+      </div>
+    </section>
+
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
+
+    <!-- TIMELINE -->
+    <section class="wrap">
+      <div class="fade-in">
+        <p class="script">The day unfolds</p>
+      </div>
+
+      <div class="timeline-minimal">
+        <div class="timeline-item fade-in">
+          <div class="label">11:30 AM</div>
+          <h3>Wedding Ceremony</h3>
+          <p>The sacred moment</p>
+        </div>
+
+        <div class="timeline-connector fade-in" aria-hidden="true"><span></span></div>
+
+        <div class="timeline-item fade-in">
+          <div class="label">6:00 PM</div>
+          <h3>Reception</h3>
+          <p>An evening of love, laughter, and celebration</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
+
+    <!-- GALLERY -->
+    <section class="wrap fade-in">
+      <p class="script">Glimpses of us</p>
+
+      <div class="single-gallery-wrap" id="galleryContainer">
+        <button type="button" class="slide-btn slide-prev" id="slidePrev" aria-label="Previous photo">❮</button>
+        <button type="button" class="slide-btn slide-next" id="slideNext" aria-label="Next photo">❯</button>
+
+        <div class="photo-main">
+          <div class="slideshow-wrapper" id="slideshowWrapper">
+            <img src="slide1.jpg" class="slide active" alt="Aiswarya and Amith, photo 1" width="780" height="1200" loading="lazy" decoding="async">
+            <img src="slide2.jpg" class="slide" alt="Aiswarya and Amith, photo 2" width="780" height="1200" loading="lazy" decoding="async">
+            <img src="slide3.jpg" class="slide" alt="Aiswarya and Amith, photo 3" width="780" height="1200" loading="lazy" decoding="async">
+            <img src="slide4.jpg" class="slide" alt="Aiswarya and Amith, photo 4" width="780" height="1200" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <div class="slide-dots" id="slideDots"></div>
+      </div>
+
+      <div class="gallery-closing">We can't wait to share our special day with you</div>
+    </section>
+
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="wrap" style="padding-bottom: 64px;">
+      <div class="fade-in">
+        <p class="script">Join us</p>
+        <h2 class="section-title">KINDLY RSVP</h2>
+      </div>
+
+      <div class="card fade-in" style="max-width: 460px; margin: 22px auto 0; padding: 38px 22px;">
+        <div id="panel-ask" class="panel active">
+          <div class="rsvp-buttons" style="margin-top: 0;">
+            <button type="button" class="plaque-btn filled" data-panel="panel-name">Yes, I'll be there</button>
+            <button type="button" class="plaque-btn outline" data-panel="panel-decline">No, I can't make it</button>
+          </div>
+        </div>
+
+        <div id="panel-decline" class="panel" aria-live="polite">
+          <div class="notice-box">✓ Thank you for letting us know — you'll be missed!</div>
+        </div>
+
+        <div id="panel-name" class="panel">
+          <h2 class="shimmer-gold" style="font-family: var(--premium-script); font-size: clamp(44px, 11vw, 52px); font-weight: normal; margin-bottom: 6px;">We're so glad!</h2>
+          <p style="margin-bottom: 22px; font-size:15px; color: rgba(249,248,243,0.88);">Let us know who's joining the celebration.</p>
+          <form id="rsvpForm" style="text-align: left;" novalidate>
+            <label class="field-label" for="guestName">Your Name</label>
+            <input id="guestName" class="field-input" type="text" placeholder="Enter full name" autocomplete="name" maxlength="60" required>
+            <div class="field-error" id="nameError" role="alert"></div>
+
+            <span class="field-label" style="margin-top:4px;" id="guestsLabel">Number of Guests</span>
+            <div class="guest-stepper">
+              <button type="button" class="guest-step-btn" id="guestMinus" aria-label="Decrease guests">−</button>
+              <input id="rsvpCount" type="number" value="1" min="1" max="10" readonly aria-labelledby="guestsLabel">
+              <button type="button" class="guest-step-btn" id="guestPlus" aria-label="Increase guests">+</button>
+            </div>
+            <p style="text-align:center; font-size:13px; color: rgba(249,248,243,0.65); margin-top:-10px; margin-bottom:20px;">Including yourself</p>
+            <div class="field-error" id="sendError" role="alert" style="text-align:center;"></div>
+
+            <button type="submit" class="plaque-btn filled stacked-btn" id="btnConfirmRSVP">Confirm RSVP</button>
+            <button type="button" class="plaque-btn outline stacked-btn" style="margin-bottom: 0;" data-panel="panel-ask">Cancel</button>
+          </form>
+        </div>
+
+        <div id="panel-confirmed" class="panel" aria-live="polite">
+          <div class="notice-box">✓ Sent! We can't wait to celebrate with you!</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="script" style="color:var(--bg-cream);">With love</p>
+      <h2 class="shimmer-gold">AISWARYA <i>&amp;</i> AMITH</h2>
+      <div style="font-family: var(--premium-display); font-size: 20px; color: var(--gold-soft); margin-top: 8px; font-style: italic;">Friends &amp; Family</div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ================= SETTINGS — edit these ================= */
+  var CONFIG = {
+    // Option A (recommended): Google Apps Script web-app URL. RSVPs land in a Google Sheet.
+    rsvpEndpoint: "",
+    // Option B: WhatsApp number to receive RSVPs, digits only with country code, e.g. "919XXXXXXXXX".
+    // IMPORTANT: fill in ONE of these two, otherwise RSVPs are not delivered anywhere.
+    whatsappNumber: "",
+    maxGuests: 10,
+    // 11:30 AM India time, fixed offset so guests abroad see the correct countdown
+    weddingStart: "2026-12-20T11:30:00+05:30"
+  };
+  /* ========================================================== */
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- Scroll-in animations ---------- */
+  document.addEventListener('DOMContentLoaded', function () {
+    var faders = document.querySelectorAll('.fade-in');
+    if (!('IntersectionObserver' in window)) {
+      faders.forEach(function (f) { f.classList.add('visible'); });
+    } else {
+      var io = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        });
+      }, { root: document.querySelector('.app-container'), threshold: 0.12, rootMargin: '0px 0px -15px 0px' });
+      faders.forEach(function (f) { io.observe(f); });
+    }
+    initSlideshow();
+    initSwipe();
+  });
+
+  /* ---------- Slideshow ---------- */
+  var current = 0;
+  function slides() { return document.querySelectorAll('#slideshowWrapper .slide'); }
+
+  function buildDots() {
+    var list = slides(), box = $('slideDots');
+    box.innerHTML = '';
+    var multi = list.length > 1;
+    $('slidePrev').style.display = $('slideNext').style.display = multi ? '' : 'none';
+    if (!multi) return;
+    list.forEach(function (_, i) {
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'slide-dot';
+      d.setAttribute('aria-label', 'Show photo ' + (i + 1));
+      d.addEventListener('click', function () { show(i); });
+      box.appendChild(d);
+    });
+    show(Math.min(current, list.length - 1));
+  }
+
+  function show(i) {
+    var list = slides(); if (!list.length) return;
+    current = (i + list.length) % list.length;
+    list.forEach(function (s, k) { s.classList.toggle('active', k === current); });
+    document.querySelectorAll('#slideDots .slide-dot').forEach(function (d, k) { d.classList.toggle('active', k === current); });
+  }
+
+  function initSlideshow() {
+    slides().forEach(function (img) {
+      // A missing photo is dropped and the gallery rebuilds itself
+      img.addEventListener('error', function () { img.remove(); buildDots(); });
+    });
+    $('slidePrev').addEventListener('click', function () { show(current - 1); });
+    $('slideNext').addEventListener('click', function () { show(current + 1); });
+    buildDots();
+  }
+
+  function initSwipe() {
+    var g = $('galleryContainer'), x0 = 0, y0 = 0;
+    g.addEventListener('touchstart', function (e) { x0 = e.changedTouches[0].clientX; y0 = e.changedTouches[0].clientY; }, { passive: true });
+    g.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return; // ignore vertical scrolls
+      show(current + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+  }
+
+  /* ---------- Music ---------- */
+  var music = $('weddingMusic'), musicBtn = $('musicBtn'), musicIcon = $('musicIcon');
+  var resumeAfterHidden = false;
+
+  function musicUI(on) {
+    musicIcon.textContent = on ? '॥' : '♪';
+    musicBtn.classList.toggle('playing', on);
+    musicBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    musicBtn.setAttribute('aria-label', on ? 'Pause music' : 'Play music');
+  }
+  function playMusic() {
+    var p = music.play();
+    if (p && p.then) { p.then(function () { musicUI(true); }).catch(function () { musicUI(false); }); }
+    else { musicUI(true); }
+  }
+  musicBtn.addEventListener('click', function () {
+    if (music.paused) { playMusic(); } else { music.pause(); musicUI(false); }
+  });
+  // Stop the music when the guest switches app / locks the phone
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { resumeAfterHidden = !music.paused; if (resumeAfterHidden) { music.pause(); } }
+    else if (resumeAfterHidden) { resumeAfterHidden = false; playMusic(); }
+  });
+
+  /* ---------- Envelope ---------- */
+  $('openInviteBtn').addEventListener('click', function () {
+    var stage = $('envelopeStage');
+    stage.classList.add('opened');
+    setTimeout(function () { stage.style.display = 'none'; }, 800);
+    if (music.paused) playMusic();
+  });
+
+  /* ---------- Countdown ---------- */
+  var target = new Date(CONFIG.weddingStart);
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    var diff = Math.max(0, target - new Date());
+    $('cd-d').textContent = pad(Math.floor(diff / 86400000));
+    $('cd-h').textContent = pad(Math.floor(diff / 3600000) % 24);
+    $('cd-m').textContent = pad(Math.floor(diff / 60000) % 60);
+    $('cd-s').textContent = pad(Math.floor(diff / 1000) % 60);
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- Add to calendar (.ics) ---------- */
+  $('addCalBtn').addEventListener('click', function () {
+    var ics = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Aiswarya and Amith//Wedding//EN', 'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT', 'UID:ceremony-20261220@aiswarya-amith-wedding', 'DTSTAMP:20261031T000000Z',
+      'DTSTART:20261220T060000Z', 'DTEND:20261220T063000Z',
+      'SUMMARY:Aiswarya & Amith - Wedding Ceremony', 'LOCATION:Sangamam Auditorium\\, Thalassery\\, Kannur\\, Kerala',
+      'DESCRIPTION:Map: https://maps.app.goo.gl/j9kko8fcZibu9Lic9',
+      'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'DESCRIPTION:Wedding tomorrow', 'END:VALARM', 'END:VEVENT',
+      'BEGIN:VEVENT', 'UID:reception-20261220@aiswarya-amith-wedding', 'DTSTAMP:20261031T000000Z',
+      'DTSTART:20261220T123000Z', 'DTEND:20261220T153000Z',
+      'SUMMARY:Aiswarya & Amith - Reception', 'LOCATION:Kalharam House\\, Illathuthazhe\\, Thalassery\\, Kerala',
+      'DESCRIPTION:Map: https://maps.app.goo.gl/AKWLbuikaaqMMzno6',
+      'END:VEVENT', 'END:VCALENDAR'
+    ].join('\r\n');
+    var url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+    var a = document.createElement('a');
+    a.href = url; a.download = 'Aiswarya-and-Amith-Wedding.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+  });
+
+  /* ---------- Tap to reveal ---------- */
+  var canvas = $('scratchCanvas'), revealed = false;
+
+  function drawCover() {
+    if (revealed) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 3);
+    var size = canvas.clientWidth || 260;
+    canvas.width = Math.round(size * dpr); canvas.height = Math.round(size * dpr);
+    var c = canvas.getContext('2d');
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var g = c.createLinearGradient(0, 0, size, size);
+    g.addColorStop(0, '#E6C875'); g.addColorStop(0.5, '#CBA153'); g.addColorStop(1, '#E6C875');
+    c.fillStyle = g; c.fillRect(0, 0, size, size);
+    c.fillStyle = 'rgba(255,255,255,0.95)';
+    c.font = '500 14px Montserrat, sans-serif';
+    c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.fillText('T A P   T O   R E V E A L', size / 2, size / 2);
+  }
+  // Draw once the web font is ready so the text isn't in a fallback font
+  if (document.fonts && document.fonts.load) { document.fonts.load('500 14px Montserrat').then(drawCover, drawCover); }
+  drawCover();
+  var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(drawCover, 150); });
+
+  function reveal() {
+    if (revealed) return;
+    revealed = true;
+    canvas.style.opacity = '0';
+    canvas.style.pointerEvents = 'none';
+    canvas.setAttribute('aria-hidden', 'true');
+    canvas.tabIndex = -1;
+    $('scratchHint').style.opacity = '0';
+  }
+  canvas.addEventListener('click', reveal);
+  canvas.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); } });
+
+  /* ---------- RSVP ---------- */
+  function showPanel(id) {
+    document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); });
+    $(id).classList.add('active');
+  }
+  document.querySelectorAll('[data-panel]').forEach(function (b) {
+    b.addEventListener('click', function () { showPanel(b.getAttribute('data-panel')); });
+  });
+
+  var count = $('rsvpCount');
+  count.max = CONFIG.maxGuests;
+  $('guestMinus').addEventListener('click', function () { var v = parseInt(count.value, 10) || 1; if (v > 1) count.value = v - 1; });
+  $('guestPlus').addEventListener('click', function () { var v = parseInt(count.value, 10) || 1; if (v < CONFIG.maxGuests) count.value = v + 1; });
+
+  var nameInput = $('guestName');
+  nameInput.addEventListener('input', function () { nameInput.classList.remove('invalid'); $('nameError').textContent = ''; });
+
+  $('rsvpForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = nameInput.value.trim().replace(/\s+/g, ' ');
+    var guests = parseInt(count.value, 10) || 1;
+    $('sendError').textContent = '';
+
+    if (!name) {
+      nameInput.classList.add('invalid');
+      $('nameError').textContent = 'Please enter your name.';
+      nameInput.focus();
+      return;
+    }
+
+    var btn = $('btnConfirmRSVP');
+    var payload = { name: name, guests: guests, attending: 'Yes' };
+
+    if (CONFIG.rsvpEndpoint) {
+      btn.disabled = true; btn.textContent = 'Sending…';
+      // text/plain avoids a CORS preflight (Apps Script can't answer one)
+      fetch(CONFIG.rsvpEndpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+        .then(function () { showPanel('panel-confirmed'); })
+        .catch(function () { $('sendError').textContent = 'Could not send. Please check your connection and try again.'; })
+        .then(function () { btn.disabled = false; btn.textContent = 'Confirm RSVP'; });
+    } else if (CONFIG.whatsappNumber) {
+      var msg = 'Hi! This is ' + name + '. I will be attending the wedding of Aiswarya & Amith on 20 December 2026. Number of guests: ' + guests + '.';
+      window.open('https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+      showPanel('panel-confirmed');
+    } else {
+      // No destination configured yet: nothing is actually delivered.
+      console.warn('RSVP not delivered: set CONFIG.rsvpEndpoint or CONFIG.whatsappNumber in index.html');
+      showPanel('panel-confirmed');
+    }
+  });
+})();
+</script>
+</body>
+</html>
