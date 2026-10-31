@@ -313,16 +313,20 @@
     display: block;
   }
 
-  /* --- SINGLE ARCHED SLIDESHOW FRAME --- */
+  /* --- FULL-VIEW MANUAL SWIPE SLIDESHOW --- */
   .single-gallery-wrap {
-    max-width: 350px;
-    margin: 26px auto 18px;
+    max-width: 340px;
+    margin: 26px auto 10px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
   }
   .photo-main {
     width: 100%;
-    height: clamp(330px, 84vw, 410px);
+    /* Taller vertical aspect ratio so portrait photos display fully without getting cut off */
+    height: 440px;
     border: 2px solid var(--gold);
-    border-radius: 175px 175px 14px 14px;
+    border-radius: 170px 170px 14px 14px;
     padding: 7px;
     background: var(--bg-cream);
     box-shadow: 0 18px 40px rgba(31, 63, 52, 0.15);
@@ -333,31 +337,33 @@
     position: absolute;
     inset: 12px;
     border: 1px dashed rgba(203, 161, 83, 0.65);
-    border-radius: 165px 165px 8px 8px;
+    border-radius: 160px 160px 8px 8px;
     pointer-events: none;
-    z-index: 3;
+    z-index: 5;
   }
   .slideshow-wrapper {
     position: absolute;
     inset: 7px;
-    border-radius: 168px 168px 8px 8px;
+    border-radius: 163px 163px 8px 8px;
     overflow: hidden;
-    background: rgba(203, 161, 83, 0.1);
+    /* Soft dark emerald backdrop fills side gaps cleanly for non-vertical photos */
+    background: #1F3F34; 
     z-index: 1;
+    touch-action: pan-y;
   }
   .slide {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* OBJECT-FIT CONTAIN: Guarantees 100% of the image is visible inside the frame */
+    object-fit: contain;
     opacity: 0;
-    transform: scale(1.06);
-    transition: opacity 1.2s ease-in-out, transform 4s ease-out;
+    transition: opacity 0.4s ease-in-out;
+    pointer-events: none;
   }
   .slide.active {
     opacity: 1;
-    transform: scale(1);
     z-index: 2;
   }
   .placeholder-text {
@@ -369,11 +375,55 @@
     font-family: var(--premium-body);
     font-size: 10.5px;
     letter-spacing: 0.15em;
-    color: var(--primary-light);
+    color: var(--gold-soft);
     text-align: center;
     padding: 20px;
     z-index: 0;
     line-height: 1.6;
+  }
+
+  /* --- MANUAL SLIDE ARROWS & DOTS --- */
+  .slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(31, 63, 52, 0.85);
+    border: 1px solid var(--gold);
+    color: var(--gold-soft);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .slide-btn:hover { background: var(--primary-dark); transform: translateY(-50%) scale(1.08); }
+  .slide-prev { left: -14px; }
+  .slide-next { right: -14px; }
+
+  .slide-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .slide-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .slide-dot.active {
+    background: var(--gold);
+    transform: scale(1.25);
   }
 
   /* --- STYLISH GALLERY CLOSING MOTIF --- */
@@ -383,7 +433,7 @@
     font-style: italic;
     color: var(--primary-dark);
     letter-spacing: 0.01em;
-    margin-top: 8px;
+    margin-top: 16px;
     position: relative;
     display: inline-block;
     white-space: nowrap;
@@ -399,7 +449,7 @@
   /* --- RSVP --- */
   .panel { display: none; }
   .panel.active { display: block; animation: fadeIn 0.5s ease; }
-  .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 6px; }
+  .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
   .field-label { text-align: left; font-family: var(--premium-body); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px; color: var(--gold-soft); }
   .field-input { width: 100%; padding: 15px 14px; font-family: var(--premium-body); font-size: 16px; border: 1px solid rgba(203,161,83,0.3); border-radius: 6px; margin-bottom: 18px; background: rgba(255,255,255,0.06); color: var(--bg-cream); transition: border-color 0.3s; }
   .field-input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.1); }
@@ -509,7 +559,7 @@
             <div class="label" style="color:var(--gold-soft); margin-bottom:6px;">SAVE THE DATE</div>
             <div class="d shimmer-gold">20</div>
             <div class="m">DECEMBER · 2026</div>
-            <div style="font-style:italic; margin-top:12px; font-size:18px; color:var(--gold-soft);">Aiswarya &amp; Amith</div>
+            <div style="font-style:italic; margin-top:14px; font-size:19px; color:var(--gold-soft);">Aiswarya &amp; Amith</div>
           </div>
           <canvas class="scratch-canvas" id="scratchCanvas" width="300" height="300"></canvas>
         </div>
@@ -594,11 +644,14 @@
 
     <div class="divider fade-in"><span></span></div>
 
-    <!-- SINGLE SLIDING PHOTO GALLERY -->
+    <!-- SINGLE MANUAL SWIPE PHOTO GALLERY -->
     <section class="wrap fade-in">
       <p class="script">Glimpses of us</p>
 
-      <div class="single-gallery-wrap">
+      <div class="single-gallery-wrap" id="galleryContainer">
+        <button class="slide-btn slide-prev" onclick="changeSlide(-1)">❮</button>
+        <button class="slide-btn slide-next" onclick="changeSlide(1)">❯</button>
+
         <div class="photo-main">
           <div class="placeholder-text">Upload to GitHub:<br>slide1.jpg to slide5.jpg</div>
           <div class="slideshow-wrapper" id="slideshowWrapper">
@@ -609,6 +662,8 @@
             <img src="slide5.jpg" class="slide" alt="Aiswarya and Amith 5" onerror="this.remove()">
           </div>
         </div>
+
+        <div class="slide-dots" id="slideDots"></div>
       </div>
       
       <div class="gallery-closing">We can't wait to share our special day with you</div>
@@ -625,8 +680,7 @@
 
       <div class="card fade-in" style="max-width: 460px; margin: 22px auto 0; padding: 38px 22px;">
         <div id="panel-ask" class="panel active">
-          <p style="font-family: var(--premium-display); font-size: 26px; font-style: italic; color: var(--gold-soft); margin-bottom: 22px;">We hope you can celebrate with us.</p>
-          <div class="rsvp-buttons">
+          <div class="rsvp-buttons" style="margin-top: 0;">
             <button class="plaque-btn filled" onclick="showPanel('panel-name')">Yes, I'll be there</button>
             <button class="plaque-btn outline" onclick="showPanel('panel-decline')">No, I can't make it</button>
           </div>
@@ -692,17 +746,80 @@
     }, appearOptions);
     
     faders.forEach(fader => { appearOnScroll.observe(fader); });
+
+    // Initialize Manual Slideshow & Swipe Gestures
+    initSlideshow();
+    initSwipeGestures();
   });
 
-  // --- Smart Multi-Photo Slideshow ---
+  // --- Manual Multi-Photo Slideshow & Touch Swipe Logic ---
   var currentSlideIndex = 0;
-  setInterval(function() {
+
+  function initSlideshow() {
     var slides = document.querySelectorAll('#slideshowWrapper .slide');
-    if (slides.length <= 1) return;
+    var dotsContainer = document.getElementById('slideDots');
+    if (!dotsContainer || slides.length <= 1) return;
+
+    dotsContainer.innerHTML = '';
+    slides.forEach(function(_, idx) {
+      var dot = document.createElement('button');
+      dot.className = 'slide-dot' + (idx === 0 ? ' active' : '');
+      dot.onclick = function() { goToSlide(idx); };
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  function showSlide(index) {
+    var slides = document.querySelectorAll('#slideshowWrapper .slide');
+    var dots = document.querySelectorAll('#slideDots .slide-dot');
+    if (slides.length === 0) return;
+
+    if (index >= slides.length) currentSlideIndex = 0;
+    else if (index < 0) currentSlideIndex = slides.length - 1;
+    else currentSlideIndex = index;
+
     slides.forEach(function(s) { s.classList.remove('active'); });
-    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+    dots.forEach(function(d) { d.classList.remove('active'); });
+
     slides[currentSlideIndex].classList.add('active');
-  }, 3500);
+    if (dots[currentSlideIndex]) dots[currentSlideIndex].classList.add('active');
+  }
+
+  function changeSlide(direction) {
+    showSlide(currentSlideIndex + direction);
+  }
+
+  function goToSlide(index) {
+    showSlide(index);
+  }
+
+  // Swipe gesture support for mobile phones
+  function initSwipeGestures() {
+    var gallery = document.getElementById('galleryContainer');
+    if (!gallery) return;
+
+    var touchStartX = 0;
+    var touchEndX = 0;
+
+    gallery.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+
+    gallery.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, {passive: true});
+
+    function handleSwipe() {
+      var threshold = 40; // minimum distance for swipe
+      if (touchEndX < touchStartX - threshold) {
+        changeSlide(1); // Swipe Left -> Next Photo
+      }
+      if (touchEndX > touchStartX + threshold) {
+        changeSlide(-1); // Swipe Right -> Previous Photo
+      }
+    }
+  }
 
   // --- Music Logic ---
   var music = document.getElementById('weddingMusic');
