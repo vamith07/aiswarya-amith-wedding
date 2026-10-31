@@ -144,11 +144,13 @@
   /* outer thin ring */
   .wax-seal::after { content: ''; position: absolute; inset: -14px; border: 1px solid rgba(203,161,83,0.45); border-radius: 50%; pointer-events: none; }
   .wax-seal-text {
-    font-family: var(--premium-script); font-size: clamp(92px, 27vw, 120px); line-height: 1; padding-right: 4px; z-index: 2;
+    font-family: var(--premium-script); font-size: clamp(92px, 27vw, 120px); line-height: 1; z-index: 2;
     display: flex; align-items: center; justify-content: center;
+    transform: translateX(-4px); /* optically centers the whole monogram inside the circle */
   }
   .wax-seal-text span {
-    font-family: var(--premium-display); font-style: italic; font-size: 0.48em; margin: 0 8px;
+    font-family: var(--premium-display); font-style: normal; font-size: 0.44em;
+    margin-left: 18px; margin-right: 4px; /* offsets the wide right tail of the cursive 'A' */
     color: var(--gold-soft); -webkit-text-fill-color: var(--gold-soft); opacity: 0.95;
   }
 
@@ -183,6 +185,10 @@
     color: var(--bg-cream); padding: 72px 20px 64px; text-align: center; position: relative; overflow: hidden;
   }
   .hero h1 { font-size: clamp(40px, 11vw, 72px); line-height: 1.12; margin: 14px 0; position: relative; z-index: 2; text-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+  .hero h1 .amp {
+    font-family: var(--premium-display); font-style: italic; color: var(--gold); -webkit-text-fill-color: var(--gold);
+    font-size: 0.72em; display: inline-block; margin: 0 10px;
+  }
 
   .particles { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
   .particle { position: absolute; background: var(--gold-soft); border-radius: 50%; opacity: 0; animation: floatUp infinite ease-in; box-shadow: 0 0 8px var(--gold-soft); }
@@ -390,7 +396,7 @@
 
     <div class="fade-in" style="margin-top: 32px; position: relative; z-index: 2; transition-delay: 0.2s;">
       <div class="label" style="color:var(--gold-soft);">TOGETHER WITH THEIR FAMILIES &amp; FRIENDS</div>
-      <h1 class="shimmer-cream">Aiswarya <span style="font-family: var(--premium-script); color: var(--gold); -webkit-text-fill-color: var(--gold); font-size: 0.78em; font-style: normal; display: inline-block; width: 1.2em; text-align: center; margin: 0 -0.1em;">&amp;</span> Amith</h1>
+      <h1 class="shimmer-cream">Aiswarya<span class="amp">&amp;</span>Amith</h1>
       <p style="font-family:var(--premium-display); font-size:20px; color:var(--gold-soft); font-style:italic;">are getting married</p>
     </div>
   </header>
