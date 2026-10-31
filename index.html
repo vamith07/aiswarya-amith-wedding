@@ -133,18 +133,22 @@
   #envelopeStage.opened { opacity: 0; pointer-events: none; transform: scale(1.05); }
 
   .wax-seal {
-    width: 175px; height: 175px; border-radius: 50%; border: 2px solid var(--gold);
-    position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 32px;
-    background: radial-gradient(circle, rgba(203,161,83,0.2) 0%, rgba(203,161,83,0.05) 100%);
-    box-shadow: 0 0 40px rgba(203, 161, 83, 0.3), inset 0 0 30px rgba(203, 161, 83, 0.2);
+    width: min(270px, 70vw); height: min(270px, 70vw); border-radius: 50%; border: 2px solid var(--gold);
+    position: relative; display: flex; align-items: center; justify-content: center;
+    margin-bottom: clamp(28px, 6vh, 48px);
+    background: radial-gradient(circle, rgba(203,161,83,0.22) 0%, rgba(203,161,83,0.05) 100%);
+    box-shadow: 0 0 50px rgba(203, 161, 83, 0.3), inset 0 0 36px rgba(203, 161, 83, 0.2);
   }
-  .wax-seal::before { content: ''; position: absolute; inset: 9px; border: 1.5px dashed var(--gold); border-radius: 50%; opacity: 0.6; }
+  /* inner dashed ring */
+  .wax-seal::before { content: ''; position: absolute; inset: 12px; border: 1.5px dashed var(--gold); border-radius: 50%; opacity: 0.6; }
+  /* outer thin ring */
+  .wax-seal::after { content: ''; position: absolute; inset: -14px; border: 1px solid rgba(203,161,83,0.45); border-radius: 50%; pointer-events: none; }
   .wax-seal-text {
-    font-family: var(--premium-script); font-size: 72px; padding-right: 4px; z-index: 2;
+    font-family: var(--premium-script); font-size: clamp(92px, 27vw, 120px); line-height: 1; padding-right: 4px; z-index: 2;
     display: flex; align-items: center; justify-content: center;
   }
   .wax-seal-text span {
-    font-family: var(--premium-display); font-style: italic; font-size: 0.48em; margin: 0 6px;
+    font-family: var(--premium-display); font-style: italic; font-size: 0.48em; margin: 0 8px;
     color: var(--gold-soft); -webkit-text-fill-color: var(--gold-soft); opacity: 0.95;
   }
 
@@ -333,6 +337,12 @@
     .card { padding: 30px 18px; margin-top: 18px; }
     .rsvp-buttons .plaque-btn { width: 100%; }
     .music-control { bottom: 18px; right: 18px; width: 44px; height: 44px; }
+  }
+
+  /* Short phones: slightly smaller seal so the button stays on screen */
+  @media (max-height: 640px) {
+    .wax-seal { width: min(210px, 58vw); height: min(210px, 58vw); }
+    .wax-seal-text { font-size: clamp(74px, 22vw, 92px); }
   }
 
   /* Respect "reduce motion" device setting (also saves battery) */
