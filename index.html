@@ -156,7 +156,6 @@
   }
   .plaque-btn.filled { background: linear-gradient(135deg, var(--gold-soft), var(--gold)); color: var(--primary-dark); font-weight: 600; border: none; box-shadow: 0 10px 20px rgba(203,161,83,0.2); }
   .plaque-btn.outline { background: transparent; color: var(--gold); }
-  .plaque-btn.dark { color: var(--primary-dark); }
   .plaque-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 22px rgba(203,161,83,0.3); }
   .plaque-btn:active { transform: translateY(1px); }
   .plaque-btn:disabled { opacity: 0.6; cursor: wait; transform: none; box-shadow: none; }
@@ -232,8 +231,7 @@
   }
   .counter-item::after { content: ''; position: absolute; inset: 4px; border: 1px dashed rgba(203,161,83,0.5); border-radius: 33px 33px 4px 4px; pointer-events: none; }
   .counter-item b { font-family: var(--premium-display); font-size: clamp(30px, 8vw, 36px); font-weight: 400; color: var(--bg-cream); line-height: 1; margin-top: 6px; z-index: 2; font-variant-numeric: tabular-nums; }
-  .counter-item span { font-size: 10px; letter-spacing: 0.14em; color: var(--gold-soft); margin-top: 6px; font-weight: 500; text-transform: uppercase; z-index: 2; }
-  .cal-wrap { margin-top: 30px; }
+  .counter-item span { font-size: 11px; letter-spacing: 0.14em; color: var(--gold-soft); margin-top: 6px; font-weight: 500; text-transform: uppercase; z-index: 2; }
 
   /* --- CARDS --- */
   .card {
@@ -249,7 +247,7 @@
   .card h3 { font-size: clamp(24px, 6vw, 28px); margin: 6px 0; color: var(--bg-cream); text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
   .card p { font-size: 14px; color: rgba(249, 248, 243, 0.88); line-height: 1.6; letter-spacing: 0.02em; }
   .card .time { font-family: var(--premium-display); font-size: 18px; font-style: italic; color: var(--gold-soft); margin-top: 10px; line-height: 1.45; }
-  .card .action-link { display: inline-block; margin-top: 18px; padding: 8px 2px; font-size: 12px; letter-spacing: 0.15em; color: var(--gold); border-bottom: 1px solid rgba(203,161,83,0.4); transition: color 0.3s, border-color 0.3s; }
+  .card .action-link { display: inline-block; margin-top: 18px; padding: 8px 2px; font-size: 13px; letter-spacing: 0.15em; color: var(--gold); border-bottom: 1px solid rgba(203,161,83,0.4); transition: color 0.3s, border-color 0.3s; }
   .card .action-link:hover { color: var(--bg-cream); border-color: var(--bg-cream); }
 
   /* --- TIMELINE --- */
@@ -432,7 +430,6 @@
         <div class="counter-item"><b id="cd-m">00</b><span>Min</span></div>
         <div class="counter-item"><b id="cd-s">00</b><span>Sec</span></div>
       </div>
-
     </section>
 
     <div class="divider fade-in" aria-hidden="true"><span></span></div>
@@ -704,28 +701,6 @@
     $('cd-s').textContent = pad(Math.floor(diff / 1000) % 60);
   }
   tick(); setInterval(tick, 1000);
-
-  /* ---------- Add to calendar (.ics) ---------- */
-  $('addCalBtn').addEventListener('click', function () {
-    var ics = [
-      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Aiswarya and Amith//Wedding//EN', 'CALSCALE:GREGORIAN',
-      'BEGIN:VEVENT', 'UID:ceremony-20261220@aiswarya-amith-wedding', 'DTSTAMP:20261031T000000Z',
-      'DTSTART:20261220T060000Z', 'DTEND:20261220T063000Z',
-      'SUMMARY:Aiswarya & Amith - Wedding Ceremony', 'LOCATION:Sangamam Auditorium\\, Thalassery\\, Kannur\\, Kerala',
-      'DESCRIPTION:Map: https://maps.app.goo.gl/j9kko8fcZibu9Lic9',
-      'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'DESCRIPTION:Wedding tomorrow', 'END:VALARM', 'END:VEVENT',
-      'BEGIN:VEVENT', 'UID:reception-20261220@aiswarya-amith-wedding', 'DTSTAMP:20261031T000000Z',
-      'DTSTART:20261220T123000Z', 'DTEND:20261220T153000Z',
-      'SUMMARY:Aiswarya & Amith - Reception', 'LOCATION:Kalharam House\\, Illathuthazhe\\, Thalassery\\, Kerala',
-      'DESCRIPTION:Map: https://maps.app.goo.gl/AKWLbuikaaqMMzno6',
-      'END:VEVENT', 'END:VCALENDAR'
-    ].join('\r\n');
-    var url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
-    var a = document.createElement('a');
-    a.href = url; a.download = 'Aiswarya-and-Amith-Wedding.ics';
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
-  });
 
   /* ---------- Tap to reveal ---------- */
   var canvas = $('scratchCanvas'), revealed = false;
