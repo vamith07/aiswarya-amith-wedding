@@ -97,8 +97,8 @@
   .app-container::-webkit-scrollbar-thumb { background: rgba(203,161,83,0.45); border-radius: 10px; }
 
   h1, h2, h3, .display-text { font-family: var(--premium-display); font-weight: 500; color: var(--primary-dark); }
-  .script { font-family: var(--premium-script); font-size: clamp(38px, 9vw, 46px); color: var(--primary-dark); line-height: 1.05; margin-bottom: -4px; text-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
-  .section-title { font-size: clamp(26px, 6.5vw, 32px); margin-top: 6px; letter-spacing: 0.03em; }
+  .script { font-family: var(--premium-script); font-size: clamp(38px, 9vw, 46px); color: var(--primary-dark); line-height: 1.05; margin-bottom: 0px; text-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
+  .section-title { font-family: var(--premium-script); font-size: clamp(38px, 9vw, 46px); color: var(--primary-dark); line-height: 1.05; margin-bottom: 0px; text-shadow: 1px 1px 2px rgba(0,0,0,0.05); margin-top: 2px; }
   .label { font-family: var(--premium-body); font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; font-size: 13px; color: var(--gold); line-height: 1.6; }
   a { text-decoration: none; color: inherit; }
 
@@ -417,22 +417,21 @@
 
     <!-- TAP TO REVEAL -->
     <section class="wrap fade-in">
-      <p class="script">Save the date</p>
-      <h2 class="section-title">A LITTLE SURPRISE</h2>
+      <p class="script">Our forever begins</p>
+      <h2 class="section-title">CELEBRATING LOVE</h2>
 
-      <div class="scratch-container fade-in">
+      <div class="scratch-container fade-in" style="margin-top: 24px;">
         <div class="scratch-pulse-ring" aria-hidden="true"></div>
         <div class="scratch-wrap" id="scratchWrap">
           <div class="scratch-under">
-            <div class="label" style="color:var(--gold-soft); margin-bottom:4px;">SAVE THE DATE</div>
-            <div class="d shimmer-white">20<sup>th</sup></div>
+            <div class="d shimmer-white">20</div>
             <div class="m shimmer-white">DECEMBER 2026</div>
           </div>
           <canvas class="scratch-canvas" id="scratchCanvas" width="300" height="300" role="button" tabindex="0" aria-label="Tap to reveal the wedding date"></canvas>
         </div>
       </div>
 
-      <div class="label fade-in" id="scratchHint">TAP THE GOLD CIRCLE</div>
+      <div class="label fade-in" id="scratchHint" style="margin-top: 32px;">TAP THE GOLD CIRCLE</div>
     </section>
 
     <div class="divider fade-in" aria-hidden="true"><span></span></div>
@@ -456,7 +455,6 @@
     <section class="wrap">
       <div class="fade-in">
         <p class="script">Where to be</p>
-        <h2 class="section-title">WEDDING &amp; RECEPTION</h2>
       </div>
 
       <div class="card fade-in">
@@ -466,7 +464,7 @@
         <div class="label">WEDDING CEREMONY</div>
         <h3>Sangamam Auditorium</h3>
         <p>Thalassery, Kannur, Kerala</p>
-        <div class="time">20<sup>th</sup> December 2026<br>11:30 AM – 12:00 PM</div>
+        <div class="time">20 December 2026<br>11:30 AM – 12:00 PM</div>
         <a class="action-link" href="https://maps.app.goo.gl/j9kko8fcZibu9Lic9" target="_blank" rel="noopener noreferrer">OPEN IN MAPS →</a>
       </div>
 
@@ -477,7 +475,7 @@
         <div class="label">RECEPTION</div>
         <h3>Kalharam House</h3>
         <p>Illathuthazhe, Thalassery, Kerala</p>
-        <div class="time">20<sup>th</sup> December 2026<br>6:00 PM – 9:00 PM</div>
+        <div class="time">20 December 2026<br>6:00 PM – 9:00 PM</div>
         <a class="action-link" href="https://maps.app.goo.gl/AKWLbuikaaqMMzno6" target="_blank" rel="noopener noreferrer">OPEN IN MAPS →</a>
       </div>
     </section>
@@ -775,7 +773,7 @@
     e.preventDefault();
     var name = nameInput.value.trim().replace(/\s+/g, ' ');
     var guests = parseInt(count.value, 10) || 1;
-    $('sendError').textContent = '';
+    $('sendError').textContent = 'Could not send. Please check your connection and try again.';
 
     if (!name) {
       nameInput.classList.add('invalid');
