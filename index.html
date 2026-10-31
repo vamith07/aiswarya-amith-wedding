@@ -183,7 +183,6 @@
     color: var(--bg-cream); padding: 72px 20px 64px; text-align: center; position: relative; overflow: hidden;
   }
   .hero h1 { font-size: clamp(40px, 11vw, 72px); line-height: 1.12; margin: 14px 0; position: relative; z-index: 2; text-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-  .hero h1 i { font-family: var(--premium-script); color: var(--gold); -webkit-text-fill-color: var(--gold); font-size: 0.78em; font-style: normal; margin: 0 6px; }
 
   .particles { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
   .particle { position: absolute; background: var(--gold-soft); border-radius: 50%; opacity: 0; animation: floatUp infinite ease-in; box-shadow: 0 0 8px var(--gold-soft); }
@@ -369,9 +368,9 @@
   </div>
 
   <!-- MUSIC
-       To change the song: replace wedding-music.mp3 in the repo with your new file
-       (keep the same name), or change the src below to the new file name.
-       Tip: keep it under ~3 MB (128 kbps, about 3 minutes). -->
+        To change the song: replace wedding-music.mp3 in the repo with your new file
+        (keep the same name), or change the src below to the new file name.
+        Tip: keep it under ~3 MB (128 kbps, about 3 minutes). -->
   <button type="button" class="music-control" id="musicBtn" aria-label="Play music" aria-pressed="false">
     <span class="music-icon" id="musicIcon" aria-hidden="true">♪</span>
   </button>
@@ -391,7 +390,7 @@
 
     <div class="fade-in" style="margin-top: 32px; position: relative; z-index: 2; transition-delay: 0.2s;">
       <div class="label" style="color:var(--gold-soft);">TOGETHER WITH THEIR FAMILIES &amp; FRIENDS</div>
-      <h1 class="shimmer-cream">Aiswarya <i>&amp;</i> Amith</h1>
+      <h1 class="shimmer-cream">Aiswarya <span style="font-family: var(--premium-script); color: var(--gold); -webkit-text-fill-color: var(--gold); font-size: 0.78em; font-style: normal; display: inline-block; width: 1.2em; text-align: center; margin: 0 -0.1em;">&amp;</span> Amith</h1>
       <p style="font-family:var(--premium-display); font-size:20px; color:var(--gold-soft); font-style:italic;">are getting married</p>
     </div>
   </header>
@@ -728,7 +727,7 @@
     c.fillStyle = 'rgba(255,255,255,0.95)';
     c.font = '500 14px Montserrat, sans-serif';
     c.textAlign = 'center'; c.textBaseline = 'middle';
-    c.fillText('T A P   T O   R E V E A L', size / 2, size / 2);
+    c.fillText('T A P    T O    R E V E A L', size / 2, size / 2);
   }
   // Draw once the web font is ready so the text isn't in a fallback font
   if (document.fonts && document.fonts.load) { document.fonts.load('500 14px Montserrat').then(drawCover, drawCover); }
