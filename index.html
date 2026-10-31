@@ -264,104 +264,57 @@
   .card .action-link { display: inline-block; margin-top: 18px; font-size: 11px; letter-spacing: 0.15em; color: var(--gold); border-bottom: 1px solid rgba(203,161,83,0.4); padding-bottom: 3px; transition: color 0.3s, border-color 0.3s; }
   .card .action-link:hover { color: var(--bg-cream); border-color: var(--bg-cream); }
 
-  /* --- ROYAL MEDALLION TIMELINE --- */
-  .timeline-royal {
-    position: relative;
-    max-width: 400px;
-    margin: 34px auto 0;
-    padding: 8px 0;
+  /* --- SIMPLE THEME-MATCHED TIMELINE --- */
+  .timeline-minimal {
+    max-width: 340px;
+    margin: 26px auto 0;
+    text-align: center;
   }
-  .timeline-royal::before {
-    content: "";
-    position: absolute;
-    top: 24px;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1.5px;
-    background: linear-gradient(to bottom, transparent, var(--gold) 15%, var(--gold) 85%, transparent);
-    opacity: 0.65;
-    z-index: 1;
+  .timeline-item .label {
+    color: var(--gold);
+    font-size: 11.5px;
+    letter-spacing: 0.25em;
   }
-  .timeline-step {
-    position: relative;
-    z-index: 2;
+  .timeline-item h3 {
+    font-size: clamp(24px, 6vw, 28px);
+    color: var(--primary-dark);
+    margin: 4px 0;
+  }
+  .timeline-item p {
+    font-family: var(--premium-display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--primary-light);
+    line-height: 1.4;
+  }
+  /* Vertical gold line + rotated diamond matching the page dividers */
+  .timeline-connector {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 34px;
+    margin: 18px auto;
+    opacity: 0.85;
   }
-  .timeline-step:last-child {
-    margin-bottom: 0;
-  }
-  .timeline-medallion {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: var(--primary-dark);
-    border: 1.5px solid var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold);
-    box-shadow: 0 0 0 6px var(--bg-cream), 0 8px 20px rgba(31, 63, 52, 0.2);
-    margin-bottom: 14px;
-    position: relative;
-  }
-  .timeline-medallion::after {
+  .timeline-connector::before,
+  .timeline-connector::after {
     content: "";
-    position: absolute;
-    inset: 4px;
-    border: 1px dashed rgba(203, 161, 83, 0.55);
-    border-radius: 50%;
-    pointer-events: none;
+    width: 1px;
+    height: 22px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
   }
-  .timeline-medallion svg {
-    width: 24px;
-    height: 24px;
-    stroke: var(--gold-soft);
+  .timeline-connector::after {
+    background: linear-gradient(to top, transparent, var(--gold));
   }
-  .timeline-card {
-    width: 100%;
-    background: #FFFFFF;
-    border: 1px solid rgba(203, 161, 83, 0.45);
-    border-radius: 12px;
-    padding: 22px 20px;
-    box-shadow: 0 10px 28px rgba(31, 63, 52, 0.07);
-    position: relative;
-  }
-  .timeline-card::after {
-    content: "";
-    position: absolute;
-    inset: 5px;
-    border: 1px dashed rgba(203, 161, 83, 0.3);
-    border-radius: 8px;
-    pointer-events: none;
-  }
-  .timeline-badge {
-    display: inline-block;
-    padding: 4px 14px;
-    background: var(--primary-dark);
-    color: var(--gold-soft);
-    font-size: 10.5px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    border-radius: 20px;
+  .timeline-connector span {
+    width: 7px;
+    height: 7px;
     border: 1px solid var(--gold);
-    margin-bottom: 8px;
-  }
-  .timeline-card h3 {
-    font-size: 25px;
-    color: var(--primary-dark);
-    margin: 2px 0 6px;
-  }
-  .timeline-card p {
-    color: rgba(42, 42, 42, 0.78);
-    line-height: 1.55;
-    font-size: 13.5px;
+    transform: rotate(45deg);
+    margin: 6px 0;
+    display: block;
   }
 
-  /* --- SINGLE ARCHED SLIDESHOW FRAME --- */
+  /* --- SINGLE ARCHED SLIDESHOW FRAME (DYNAMIC 4-5 PHOTOS) --- */
   .single-gallery-wrap {
     max-width: 350px;
     margin: 26px auto 18px;
@@ -400,17 +353,13 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    animation: fadeSlide 12s infinite ease-in-out;
+    transform: scale(1.06);
+    transition: opacity 1.2s ease-in-out, transform 4s ease-out;
   }
-  .slide.s1 { animation-delay: 0s; }
-  .slide.s2 { animation-delay: 4s; }
-  .slide.s3 { animation-delay: 8s; }
-  @keyframes fadeSlide {
-    0% { opacity: 0; transform: scale(1.06); }
-    8% { opacity: 1; transform: scale(1); }
-    33% { opacity: 1; transform: scale(1); }
-    41% { opacity: 0; transform: scale(1.06); }
-    100% { opacity: 0; }
+  .slide.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 2;
   }
   .placeholder-text {
     position: absolute;
@@ -619,62 +568,47 @@
 
     <div class="divider fade-in"><span></span></div>
 
-    <!-- ROYAL MEDALLION TIMELINE -->
+    <!-- SIMPLE THEME-MATCHED TIMELINE (NO "WEDDING TIMELINE" TEXT) -->
     <section class="wrap">
       <div class="fade-in">
         <p class="script">The day unfolds</p>
-        <h2 class="section-title">WEDDING TIMELINE</h2>
       </div>
       
-      <div class="timeline-royal">
-        <!-- Event 1: Marriage -->
-        <div class="timeline-step fade-in">
-          <div class="timeline-medallion">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="9" cy="13" r="5"/>
-              <circle cx="15" cy="13" r="5"/>
-              <path d="M12 5l1.5 2-1.5 1.5L10.5 7 12 5z"/>
-            </svg>
-          </div>
-          <div class="timeline-card">
-            <span class="timeline-badge">11:30 AM</span>
-            <h3>Marriage</h3>
-            <p>The sacred moment at Sangamam Auditorium.</p>
-          </div>
+      <div class="timeline-minimal">
+        <div class="timeline-item fade-in">
+          <div class="label">11:30 AM</div>
+          <h3>Marriage</h3>
+          <p>The sacred moment</p>
         </div>
         
-        <!-- Event 2: Reception -->
-        <div class="timeline-step fade-in">
-          <div class="timeline-medallion">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"/>
-              <path d="M5 17l.8 1.7L7.5 19.5l-1.7.8L5 22l-.8-1.7L2.5 19.5l1.7-.8L5 17z"/>
-              <path d="M19 15l.8 1.7 1.7.8-1.7.8L19 20l-.8-1.7-1.7-.8 1.7-.8L19 15z"/>
-            </svg>
-          </div>
-          <div class="timeline-card">
-            <span class="timeline-badge">6:00 PM</span>
-            <h3>Reception</h3>
-            <p>An evening of love, laughter, and celebration at Kalharam House.</p>
-          </div>
+        <div class="timeline-connector fade-in">
+          <span></span>
+        </div>
+        
+        <div class="timeline-item fade-in">
+          <div class="label">6:00 PM</div>
+          <h3>Reception</h3>
+          <p>An evening of love, laughter, and celebration</p>
         </div>
       </div>
     </section>
 
     <div class="divider fade-in"><span></span></div>
 
-    <!-- SINGLE SLIDING PHOTO GALLERY -->
+    <!-- SINGLE SLIDING PHOTO GALLERY (SUPPORTS 1 TO 5 PHOTOS AUTOMATICALLY) -->
     <section class="wrap fade-in">
       <p class="script">Captured moments</p>
       <h2 class="section-title">GLIMPSES OF US</h2>
 
       <div class="single-gallery-wrap">
         <div class="photo-main">
-          <div class="placeholder-text">Upload to GitHub:<br>slide1.jpg, slide2.jpg, slide3.jpg</div>
-          <div class="slideshow-wrapper">
-            <img src="slide1.jpg" class="slide s1" alt="Aiswarya and Amith 1">
-            <img src="slide2.jpg" class="slide s2" alt="Aiswarya and Amith 2">
-            <img src="slide3.jpg" class="slide s3" alt="Aiswarya and Amith 3">
+          <div class="placeholder-text">Upload to GitHub:<br>slide1.jpg to slide5.jpg</div>
+          <div class="slideshow-wrapper" id="slideshowWrapper">
+            <img src="slide1.jpg" class="slide active" alt="Aiswarya and Amith 1" onerror="this.remove()">
+            <img src="slide2.jpg" class="slide" alt="Aiswarya and Amith 2" onerror="this.remove()">
+            <img src="slide3.jpg" class="slide" alt="Aiswarya and Amith 3" onerror="this.remove()">
+            <img src="slide4.jpg" class="slide" alt="Aiswarya and Amith 4" onerror="this.remove()">
+            <img src="slide5.jpg" class="slide" alt="Aiswarya and Amith 5" onerror="this.remove()">
           </div>
         </div>
       </div>
@@ -761,6 +695,16 @@
     
     faders.forEach(fader => { appearOnScroll.observe(fader); });
   });
+
+  // --- Smart Multi-Photo Slideshow (Automatically loops 3, 4, or 5 uploaded photos) ---
+  var currentSlideIndex = 0;
+  setInterval(function() {
+    var slides = document.querySelectorAll('#slideshowWrapper .slide');
+    if (slides.length <= 1) return;
+    slides.forEach(function(s) { s.classList.remove('active'); });
+    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+    slides[currentSlideIndex].classList.add('active');
+  }, 3500);
 
   // --- Music Logic ---
   var music = document.getElementById('weddingMusic');
