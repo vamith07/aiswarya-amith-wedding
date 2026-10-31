@@ -583,18 +583,15 @@
 (function () {
   'use strict';
 
-  /* ================= SETTINGS — edit these ================= */
   var CONFIG = {
     rsvpEndpoint: "",
     whatsappNumber: "",
     maxGuests: 10,
     weddingStart: "2026-12-20T11:30:00+05:30"
   };
-  /* ========================================================== */
 
   var $ = function (id) { return document.getElementById(id); };
 
-  /* ---------- Scroll-in animations ---------- */
   document.addEventListener('DOMContentLoaded', function () {
     var faders = document.querySelectorAll('.fade-in');
     if (!('IntersectionObserver' in window)) {
@@ -624,7 +621,6 @@
     initSwipe();
   });
 
-  /* ---------- Slideshow ---------- */
   var current = 0;
   function slides() { return document.querySelectorAll('#slideshowWrapper .slide'); }
 
@@ -675,7 +671,6 @@
     }, { passive: true });
   }
 
-  /* ---------- Music ---------- */
   var music = $('weddingMusic'), musicBtn = $('musicBtn'), musicIcon = $('musicIcon');
   var resumeAfterHidden = false;
 
@@ -702,7 +697,6 @@
     else if (resumeAfterHidden) { resumeAfterHidden = false; playMusic(); }
   });
 
-  /* ---------- Envelope ---------- */
   var openBtn = $('openInviteBtn');
   if (openBtn) {
     openBtn.addEventListener('click', function () {
@@ -715,7 +709,6 @@
     });
   }
 
-  /* ---------- Countdown ---------- */
   var target = new Date(CONFIG.weddingStart);
   function pad(n) { return String(n).padStart(2, '0'); }
   function tick() {
@@ -727,7 +720,6 @@
   }
   tick(); setInterval(tick, 1000);
 
-  /* ---------- Tap to reveal ---------- */
   var canvas = $('scratchCanvas'), revealed = false;
 
   function drawCover() {
@@ -764,7 +756,6 @@
     canvas.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); } });
   }
 
-  /* ---------- RSVP ---------- */
   function showPanel(id) {
     document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); });
     var targetPanel = $(id);
