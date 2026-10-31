@@ -39,7 +39,7 @@
     --primary-light: #4A6B5D;
     --gold: #CBA153;
     --gold-soft: #E6C875;
-    --gold-deep: #8A6420; /* gold for small text on cream (passes contrast) */
+    --gold-deep: #8A6420;
     --text-dark: #2A2A2A;
     --premium-display: "Cormorant Garamond", Georgia, serif;
     --premium-body: "Montserrat", system-ui, sans-serif;
@@ -60,7 +60,6 @@
     position: relative;
   }
 
-  /* Paper texture: tiled small so it is rendered once, not stretched over the full screen */
   body::before {
     content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
@@ -143,18 +142,16 @@
     background: radial-gradient(circle, rgba(203,161,83,0.22) 0%, rgba(203,161,83,0.05) 100%);
     box-shadow: 0 0 50px rgba(203, 161, 83, 0.3), inset 0 0 36px rgba(203, 161, 83, 0.2);
   }
-  /* inner dashed ring */
   .wax-seal::before { content: ''; position: absolute; inset: 12px; border: 1.5px dashed var(--gold); border-radius: 50%; opacity: 0.6; }
-  /* outer thin ring */
   .wax-seal::after { content: ''; position: absolute; inset: -14px; border: 1px solid rgba(203,161,83,0.45); border-radius: 50%; pointer-events: none; }
   .wax-seal-text {
     font-family: var(--premium-script); font-size: clamp(74px, 21vw, 96px); line-height: 1; z-index: 2;
     display: flex; align-items: center; justify-content: center;
-    transform: translateX(-3px); /* optically centers the whole monogram inside the circle */
+    transform: translateX(-3px);
   }
   .wax-seal-text span {
     font-family: var(--premium-display); font-style: normal; font-size: 0.44em;
-    margin-left: 15px; margin-right: 4px; /* offsets the wide right tail of the cursive 'A' */
+    margin-left: 15px; margin-right: 4px;
     color: var(--gold-soft); -webkit-text-fill-color: var(--gold-soft); opacity: 0.95;
   }
 
@@ -283,7 +280,6 @@
   }
   .photo-main::after { content: ""; position: absolute; inset: 12px; border: 1px dashed rgba(203, 161, 83, 0.65); border-radius: 160px 160px 8px 8px; pointer-events: none; z-index: 5; }
   .slideshow-wrapper { position: absolute; inset: 7px; border-radius: 163px 163px 8px 8px; overflow: hidden; background: #EFE9DA; z-index: 1; touch-action: pan-y; }
-  /* cover = photo always fills the frame edge to edge (no side/top bars) */
   .slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 0.4s ease-in-out; pointer-events: none; }
   .slide.active { opacity: 1; z-index: 2; }
 
@@ -350,13 +346,11 @@
     .music-control { bottom: 18px; right: 18px; width: 44px; height: 44px; }
   }
 
-  /* Short phones: slightly smaller seal so the button stays on screen */
   @media (max-height: 640px) {
     .wax-seal { width: min(210px, 58vw); height: min(210px, 58vw); }
     .wax-seal-text { font-size: clamp(60px, 18vw, 76px); }
   }
 
-  /* Respect "reduce motion" device setting (also saves battery) */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
     .fade-in { opacity: 1; transform: none; }
@@ -379,10 +373,6 @@
     <button type="button" class="plaque-btn outline btn-pulse" id="openInviteBtn">Tap to Open</button>
   </div>
 
-  <!-- MUSIC
-        To change the song: replace wedding-music.mp3 in the repo with your new file
-        (keep the same name), or change the src below to the new file name.
-        Tip: keep it under ~3 MB (128 kbps, about 3 minutes). -->
   <button type="button" class="music-control" id="musicBtn" aria-label="Play music" aria-pressed="false">
     <span class="music-icon" id="musicIcon" aria-hidden="true">♪</span>
   </button>
@@ -441,7 +431,7 @@
     <!-- COUNTDOWN -->
     <section class="wrap fade-in">
       <p class="script">Counting down</p>
-      <h2 class="section-title">UNTIL FOREVER</h2>
+      <h2 class="script" style="margin-top: 6px;">UNTIL FOREVER</h2>
 
       <div class="counter" role="timer" aria-label="Countdown to the wedding">
         <div class="counter-item"><b id="cd-d">00</b><span>Days</span></div>
@@ -595,13 +585,9 @@
 
   /* ================= SETTINGS — edit these ================= */
   var CONFIG = {
-    // Option A (recommended): Google Apps Script web-app URL. RSVPs land in a Google Sheet.
     rsvpEndpoint: "",
-    // Option B: WhatsApp number to receive RSVPs, digits only with country code, e.g. "919XXXXXXXXX".
-    // IMPORTANT: fill in ONE of these two, otherwise RSVPs are not delivered anywhere.
     whatsappNumber: "",
     maxGuests: 10,
-    // 11:30 AM India time, fixed offset so guests abroad see the correct countdown
     weddingStart: "2026-12-20T11:30:00+05:30"
   };
   /* ========================================================== */
@@ -612,16 +598,27 @@
   document.addEventListener('DOMContentLoaded', function () {
     var faders = document.querySelectorAll('.fade-in');
     if (!('IntersectionObserver' in window)) {
-      faders.forEach(function (f) { f.classList.add('visible'); });
+      faders.forEach(function (f) {
+        if (f && typeof f.classList === 'object' && f.classList.add) {
+          f.classList.add('visible');
+        }
+      });
     } else {
       var io = new IntersectionObserver(function (entries, observer) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add('visible');
+          if (entry.target && entry.target.classList) {
+            entry.target.classList.add('visible');
+          }
           observer.unobserve(entry.target);
         });
       }, { root: document.querySelector('.app-container'), threshold: 0.12, rootMargin: '0px 0px -15px 0px' });
-      faders.forEach(function (f) { f.observe(f); });
+
+      faders.forEach(function (f) {
+        if (f && typeof f.observe !== 'function' && f.nodeType === 1) {
+          io.observe(f);
+        }
+      });
     }
     initSlideshow();
     initSwipe();
@@ -633,9 +630,11 @@
 
   function buildDots() {
     var list = slides(), box = $('slideDots');
+    if (!box) return;
     box.innerHTML = '';
     var multi = list.length > 1;
-    $('slidePrev').style.display = $('slideNext').style.display = multi ? '' : 'none';
+    if ($('slidePrev')) $('slidePrev').style.display = multi ? '' : 'none';
+    if ($('slideNext')) $('slideNext').style.display = multi ? '' : 'none';
     if (!multi) return;
     list.forEach(function (_, i) {
       var d = document.createElement('button');
@@ -657,20 +656,21 @@
 
   function initSlideshow() {
     slides().forEach(function (img) {
-      // A missing photo is dropped and the gallery rebuilds itself
       img.addEventListener('error', function () { img.remove(); buildDots(); });
     });
-    $('slidePrev').addEventListener('click', function () { show(current - 1); });
-    $('slideNext').addEventListener('click', function () { show(current + 1); });
+    if ($('slidePrev')) $('slidePrev').addEventListener('click', function () { show(current - 1); });
+    if ($('slideNext')) $('slideNext').addEventListener('click', function () { show(current + 1); });
     buildDots();
   }
 
   function initSwipe() {
-    var g = $('galleryContainer'), x0 = 0, y0 = 0;
+    var g = $('galleryContainer');
+    if (!g) return;
+    var x0 = 0, y0 = 0;
     g.addEventListener('touchstart', function (e) { x0 = e.changedTouches[0].clientX; y0 = e.changedTouches[0].clientY; }, { passive: true });
     g.addEventListener('touchend', function (e) {
       var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
-      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return; // ignore vertical scrolls
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
       show(current + (dx < 0 ? 1 : -1));
     }, { passive: true });
   }
@@ -680,42 +680,50 @@
   var resumeAfterHidden = false;
 
   function musicUI(on) {
+    if (!musicIcon || !musicBtn) return;
     musicIcon.textContent = on ? '॥' : '♪';
     musicBtn.classList.toggle('playing', on);
     musicBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
     musicBtn.setAttribute('aria-label', on ? 'Pause music' : 'Play music');
   }
   function playMusic() {
+    if (!music) return;
     var p = music.play();
     if (p && p.then) { p.then(function () { musicUI(true); }).catch(function () { musicUI(false); }); }
     else { musicUI(true); }
   }
-  musicBtn.addEventListener('click', function () {
-    if (music.paused) { playMusic(); } else { music.pause(); musicUI(false); }
-  });
-  // Stop the music when the guest switches app / locks the phone
+  if (musicBtn) {
+    musicBtn.addEventListener('click', function () {
+      if (music.paused) { playMusic(); } else { music.pause(); musicUI(false); }
+    });
+  }
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) { resumeAfterHidden = !music.paused; if (resumeAfterHidden) { music.pause(); } }
     else if (resumeAfterHidden) { resumeAfterHidden = false; playMusic(); }
   });
 
   /* ---------- Envelope ---------- */
-  $('openInviteBtn').addEventListener('click', function () {
-    var stage = $('envelopeStage');
-    stage.classList.add('opened');
-    setTimeout(function () { stage.style.display = 'none'; }, 800);
-    if (music.paused) playMusic();
-  });
+  var openBtn = $('openInviteBtn');
+  if (openBtn) {
+    openBtn.addEventListener('click', function () {
+      var stage = $('envelopeStage');
+      if (stage) {
+        stage.classList.add('opened');
+        setTimeout(function () { stage.style.display = 'none'; }, 800);
+      }
+      if (music && music.paused) playMusic();
+    });
+  }
 
   /* ---------- Countdown ---------- */
   var target = new Date(CONFIG.weddingStart);
   function pad(n) { return String(n).padStart(2, '0'); }
   function tick() {
     var diff = Math.max(0, target - new Date());
-    $('cd-d').textContent = pad(Math.floor(diff / 86400000));
-    $('cd-h').textContent = pad(Math.floor(diff / 3600000) % 24);
-    $('cd-m').textContent = pad(Math.floor(diff / 60000) % 60);
-    $('cd-s').textContent = pad(Math.floor(diff / 1000) % 60);
+    if ($('cd-d')) $('cd-d').textContent = pad(Math.floor(diff / 86400000));
+    if ($('cd-h')) $('cd-h').textContent = pad(Math.floor(diff / 3600000) % 24);
+    if ($('cd-m')) $('cd-m').textContent = pad(Math.floor(diff / 60000) % 60);
+    if ($('cd-s')) $('cd-s').textContent = pad(Math.floor(diff / 1000) % 60);
   }
   tick(); setInterval(tick, 1000);
 
@@ -723,7 +731,7 @@
   var canvas = $('scratchCanvas'), revealed = false;
 
   function drawCover() {
-    if (revealed) return;
+    if (!canvas || revealed) return;
     var dpr = Math.min(window.devicePixelRatio || 1, 3);
     var size = canvas.clientWidth || 260;
     canvas.width = Math.round(size * dpr); canvas.height = Math.round(size * dpr);
@@ -737,73 +745,94 @@
     c.textAlign = 'center'; c.textBaseline = 'middle';
     c.fillText('T A P    T O    R E V E A L', size / 2, size / 2);
   }
-  // Draw once the web font is ready so the text isn't in a fallback font
-  if (document.fonts && document.fonts.load) { document.fonts.load('500 14px Montserrat').then(drawCover, drawCover); }
-  drawCover();
-  var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(drawCover, 150); });
+  if (canvas) {
+    if (document.fonts && document.fonts.load) { document.fonts.load('500 14px Montserrat').then(drawCover, drawCover); }
+    drawCover();
+    var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(drawCover, 150); });
 
-  function reveal() {
-    if (revealed) return;
-    revealed = true;
-    canvas.style.opacity = '0';
-    canvas.style.pointerEvents = 'none';
-    canvas.setAttribute('aria-hidden', 'true');
-    canvas.tabIndex = -1;
-    $('scratchHint').style.opacity = '0';
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      canvas.style.opacity = '0';
+      canvas.style.pointerEvents = 'none';
+      canvas.setAttribute('aria-hidden', 'true');
+      canvas.tabIndex = -1;
+      var hint = $('scratchHint');
+      if (hint) hint.style.opacity = '0';
+    }
+    canvas.addEventListener('click', reveal);
+    canvas.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); } });
   }
-  canvas.addEventListener('click', reveal);
-  canvas.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); } });
 
   /* ---------- RSVP ---------- */
   function showPanel(id) {
     document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); });
-    $(id).classList.add('active');
+    var targetPanel = $(id);
+    if (targetPanel) targetPanel.classList.add('active');
   }
   document.querySelectorAll('[data-panel]').forEach(function (b) {
-    b.addEventListener('click', function () { showPanel(b.getAttribute('data-panel')); });
+    b.addEventListener('click', function () {
+      var panelId = b.getAttribute('data-panel');
+      if (panelId) showPanel(panelId);
+    });
   });
 
   var count = $('rsvpCount');
-  count.max = CONFIG.maxGuests;
-  $('guestMinus').addEventListener('click', function () { var v = parseInt(count.value, 10) || 1; if (v > 1) count.value = v - 1; });
-  $('guestPlus').addEventListener('click', function () { var v = parseInt(count.value, 10) || 1; if (v < CONFIG.maxGuests) count.value = v + 1; });
+  if (count) {
+    count.max = CONFIG.maxGuests;
+    var minusBtn = $('guestMinus'), plusBtn = $('guestPlus');
+    if (minusBtn) {
+      minusBtn.addEventListener('click', function () { var v = parseInt(count.value, 10) || 1; if (v > 1) count.value = v - 1; });
+    }
+    if (plusBtn) {
+      plusBtn.addEventListener('click', function () { var v = parseInt(count.value, 10) || 1; if (v < CONFIG.maxGuests) count.value = v + 1; });
+    }
+  }
 
   var nameInput = $('guestName');
-  nameInput.addEventListener('input', function () { nameInput.classList.remove('invalid'); $('nameError').textContent = ''; });
+  if (nameInput) {
+    nameInput.addEventListener('input', function () {
+      nameInput.classList.remove('invalid');
+      var err = $('nameError');
+      if (err) err.textContent = '';
+    });
+  }
 
-  $('rsvpForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var name = nameInput.value.trim().replace(/\s+/g, ' ');
-    var guests = parseInt(count.value, 10) || 1;
-    $('sendError').textContent = '';
+  var rsvpForm = $('rsvpForm');
+  if (rsvpForm) {
+    rsvpForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = nameInput ? nameInput.value.trim().replace(/\s+/g, ' ') : '';
+      var guests = count ? (parseInt(count.value, 10) || 1) : 1;
+      var sendErr = $('sendError');
+      if (sendErr) sendErr.textContent = '';
 
-    if (!name) {
-      nameInput.classList.add('invalid');
-      $('nameError').SectionName = 'Please enter your name.';
-      nameInput.focus();
-      return;
-    }
+      if (!name) {
+        if (nameInput) nameInput.classList.add('invalid');
+        var nameErr = $('nameError');
+        if (nameErr) nameErr.textContent = 'Please enter your name.';
+        if (nameInput) nameInput.focus();
+        return;
+      }
 
-    var btn = $('btnConfirmRSVP');
-    var payload = { name: name, guests: guests, attending: 'Yes' };
+      var btn = $('btnConfirmRSVP');
+      var payload = { name: name, guests: guests, attending: 'Yes' };
 
-    if (CONFIG.rsvpEndpoint) {
-      btn.disabled = true; btn.textContent = 'Sending…';
-      // text/plain avoids a CORS preflight (Apps Script can't answer one)
-      fetch(CONFIG.rsvpEndpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
-        .then(function () { showPanel('panel-confirmed'); })
-        .catch(function () { $('sendError').textContent = 'Could not send. Please check your connection and try again.'; })
-        .then(function () { btn.disabled = false; btn.textContent = 'Confirm RSVP'; });
-    } else if (CONFIG.whatsappNumber) {
-      var msg = 'Hi! This is ' + name + '. I will be attending the wedding of Aiswarya & Amith on 20 December 2026. Number of guests: ' + guests + '.';
-      window.open('https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
-      showPanel('panel-confirmed');
-    } else {
-      // No destination configured yet: nothing is actually delivered.
-      console.warn('RSVP not delivered: set CONFIG.rsvpEndpoint or CONFIG.whatsappNumber in index.html');
-      showPanel('panel-confirmed');
-    }
-  });
+      if (CONFIG.rsvpEndpoint) {
+        if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+        fetch(CONFIG.rsvpEndpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+          .then(function () { showPanel('panel-confirmed'); })
+          .catch(function () { if (sendErr) sendErr.textContent = 'Could not send. Please check your connection and try again.'; })
+          .then(function () { if (btn) { btn.disabled = false; btn.textContent = 'Confirm RSVP'; } });
+      } else if (CONFIG.whatsappNumber) {
+        var msg = 'Hi! This is ' + name + '. I will be attending the wedding of Aiswarya & Amith on 20 December 2026. Number of guests: ' + guests + '.';
+        window.open('https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+        showPanel('panel-confirmed');
+      } else {
+        showPanel('panel-confirmed');
+      }
+    });
+  }
 })();
 </script>
 </body>
