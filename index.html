@@ -98,7 +98,7 @@
 
   h1, h2, h3, .display-text { font-family: var(--premium-display); font-weight: 500; color: var(--primary-dark); }
   .script { font-family: var(--premium-script); font-size: clamp(38px, 9vw, 46px); color: var(--primary-dark); line-height: 1.05; margin-bottom: -4px; text-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
-  .section-title { font-size: clamp(38px, 9vw, 46px); margin-top: -4px; font-family: var(--premium-script); font-weight: normal; color: var(--primary-dark); }
+  .section-title { font-size: clamp(26px, 6.5vw, 32px); margin-top: 6px; letter-spacing: 0.03em; }
   .label { font-family: var(--premium-body); font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; font-size: 13px; color: var(--gold); line-height: 1.6; }
   a { text-decoration: none; color: inherit; }
 
@@ -567,7 +567,7 @@
               <button type="button" class="guest-step-btn" id="guestPlus" aria-label="Increase guests">+</button>
             </div>
             <p style="text-align:center; font-size:13px; color: rgba(249,248,243,0.65); margin-top:-10px; margin-bottom:20px;">Including yourself</p>
-            <div class="field-error" id="sendError" role="alert" style="text-align:center;">Type connection error message here if needed.</div>
+            <div class="field-error" id="sendError" role="alert" style="text-align:center;"></div>
 
             <button type="submit" class="plaque-btn filled stacked-btn" id="btnConfirmRSVP">Confirm RSVP</button>
             <button type="button" class="plaque-btn outline stacked-btn" style="margin-bottom: 0;" data-panel="panel-ask">Cancel</button>
@@ -621,7 +621,7 @@
           observer.unobserve(entry.target);
         });
       }, { root: document.querySelector('.app-container'), threshold: 0.12, rootMargin: '0px 0px -15px 0px' });
-      faders.forEach(function (f) { io.observe(f); });
+      faders.forEach(function (f) { f.observe(f); });
     }
     initSlideshow();
     initSwipe();
@@ -735,7 +735,7 @@
     c.fillStyle = 'rgba(255,255,255,0.95)';
     c.font = '500 14px Montserrat, sans-serif';
     c.textAlign = 'center'; c.textBaseline = 'middle';
-    c.fillText('T A P    T O    R E V EAL', size / 2, size / 2);
+    c.fillText('T A P    T O    R E V E A L', size / 2, size / 2);
   }
   // Draw once the web font is ready so the text isn't in a fallback font
   if (document.fonts && document.fonts.load) { document.fonts.load('500 14px Montserrat').then(drawCover, drawCover); }
@@ -775,11 +775,11 @@
     e.preventDefault();
     var name = nameInput.value.trim().replace(/\s+/g, ' ');
     var guests = parseInt(count.value, 10) || 1;
-    $('sendError').textContent = 'Could not send. Please check your connection and try again.';
+    $('sendError').textContent = '';
 
     if (!name) {
       nameInput.classList.add('invalid');
-      $('nameError').textContent = 'Please enter your name.';
+      $('nameError').SectionName = 'Please enter your name.';
       nameInput.focus();
       return;
     }
