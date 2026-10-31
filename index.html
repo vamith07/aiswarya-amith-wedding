@@ -303,6 +303,26 @@
   }
   .gallery-closing::before, .gallery-closing::after { content: "•"; color: var(--gold); margin: 0 6px; font-style: normal; }
 
+  /* --- RSVP --- */
+  .panel { display: none; }
+  .panel.active { display: block; animation: fadeIn 0.5s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+  .field-label { display: block; text-align: left; font-family: var(--premium-body); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px; color: var(--gold-soft); }
+  .field-input { width: 100%; padding: 15px 14px; font-family: var(--premium-body); font-size: 16px; border: 1px solid rgba(203,161,83,0.3); border-radius: 6px; margin-bottom: 18px; background: rgba(255,255,255,0.06); color: var(--bg-cream); transition: border-color 0.3s; }
+  .field-input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.1); }
+  .field-input::placeholder { color: rgba(255,255,255,0.45); }
+  .field-input.invalid { border-color: #E58C7B; }
+  .field-error { color: #F2B3A6; font-size: 13px; text-align: left; margin: -10px 0 16px; min-height: 0; }
+  .field-error:empty { display: none; }
+  .guest-stepper { width: 100%; height: 54px; display: grid; grid-template-columns: 54px 1fr 54px; align-items: center; border: 1px solid rgba(203,161,83,0.3); border-radius: 6px; background: rgba(255,255,255,0.06); margin-bottom: 18px; }
+  .guest-step-btn { height: 100%; border: 0; background: transparent; color: var(--gold); font-family: Georgia, serif; font-size: 24px; cursor: pointer; transition: background 0.2s ease; }
+  .guest-step-btn:hover { background: rgba(203,161,83,0.15); }
+  #rsvpCount { width: 100%; height: 100%; border: 0; border-left: 1px solid rgba(203,161,83,0.2); border-right: 1px solid rgba(203,161,83,0.2); background: transparent; text-align: center; color: var(--bg-cream); font-family: var(--premium-display); font-size: 22px; font-weight: 600; appearance: textfield; -moz-appearance: textfield; }
+  #rsvpCount::-webkit-inner-spin-button, #rsvpCount::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  .stacked-btn { width: 100%; margin-bottom: 12px; display: block; }
+  .notice-box { padding: 22px 18px; border: 1px solid var(--gold); font-size: 17px; color: var(--gold-soft); border-radius: 8px; background: rgba(203,161,83,0.05); line-height: 1.5; }
+
   footer { background: var(--primary-dark); color: var(--bg-cream); text-align: center; padding: 54px 20px 76px; position: relative; z-index: 2; border-top: 1px solid rgba(203,161,83,0.2); }
   footer h2 { color: var(--gold); font-size: clamp(26px, 7vw, 32px); margin-top: 10px; letter-spacing: 0.05em; }
   footer h2 i { color: var(--gold-soft); -webkit-text-fill-color: var(--gold-soft); font-style: italic; }
@@ -320,6 +340,7 @@
     .counter { gap: 8px; margin-top: 22px; }
     .counter-item { height: 88px; }
     .card { padding: 30px 18px; margin-top: 18px; }
+    .rsvp-buttons .plaque-btn { width: 100%; }
     .music-control { bottom: 18px; right: 18px; width: 44px; height: 44px; }
   }
 
@@ -486,7 +507,7 @@
     <div class="divider fade-in" aria-hidden="true"><span></span></div>
 
     <!-- GALLERY -->
-    <section class="wrap fade-in" style="padding-bottom: 64px;">
+    <section class="wrap fade-in">
       <p class="script">Glimpses of us</p>
 
       <div class="single-gallery-wrap" id="galleryContainer">
@@ -508,6 +529,54 @@
       <div class="gallery-closing">We can't wait to share our special day with you</div>
     </section>
 
+    <div class="divider fade-in" aria-hidden="true"><span></span></div>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="wrap" style="padding-bottom: 64px;">
+      <div class="fade-in">
+        <p class="script">Join us</p>
+      </div>
+
+      <div class="card fade-in" style="max-width: 460px; margin: 26px auto 0; padding: 38px 22px;">
+        <div id="panel-ask" class="panel active">
+          <div class="rsvp-buttons" style="margin-top: 0;">
+            <button type="button" class="plaque-btn filled" data-panel="panel-name">Yes, I'll be there</button>
+            <button type="button" class="plaque-btn outline" data-panel="panel-decline">No, I can't make it</button>
+          </div>
+        </div>
+
+        <div id="panel-decline" class="panel" aria-live="polite">
+          <div class="notice-box">✓ Thank you for letting us know — you'll be missed!</div>
+        </div>
+
+        <div id="panel-name" class="panel">
+          <h2 class="shimmer-gold" style="font-family: var(--premium-script); font-size: clamp(44px, 11vw, 52px); font-weight: normal; margin-bottom: 6px;">We're so glad!</h2>
+          <p style="margin-bottom: 22px; font-size:15px; color: rgba(249,248,243,0.88);">Let us know who's joining the celebration.</p>
+          <form id="rsvpForm" style="text-align: left;" novalidate>
+            <label class="field-label" for="guestName">Your Name</label>
+            <input id="guestName" class="field-input" type="text" placeholder="Enter full name" autocomplete="name" maxlength="60" required>
+            <div class="field-error" id="nameError" role="alert"></div>
+
+            <span class="field-label" style="margin-top:4px;" id="guestsLabel">Number of Guests</span>
+            <div class="guest-stepper">
+              <button type="button" class="guest-step-btn" id="guestMinus" aria-label="Decrease guests">−</button>
+              <input id="rsvpCount" type="number" value="1" min="1" max="10" readonly aria-labelledby="guestsLabel">
+              <button type="button" class="guest-step-btn" id="guestPlus" aria-label="Increase guests">+</button>
+            </div>
+            <p style="text-align:center; font-size:13px; color: rgba(249,248,243,0.65); margin-top:-10px; margin-bottom:20px;">Including yourself</p>
+            <div class="field-error" id="sendError" role="alert" style="text-align:center;"></div>
+
+            <button type="submit" class="plaque-btn filled stacked-btn" id="btnConfirmRSVP">Confirm RSVP</button>
+            <button type="button" class="plaque-btn outline stacked-btn" style="margin-bottom: 0;" data-panel="panel-ask">Cancel</button>
+          </form>
+        </div>
+
+        <div id="panel-confirmed" class="panel" aria-live="polite">
+          <div class="notice-box">✓ Sent! We can't wait to celebrate with you!</div>
+        </div>
+      </div>
+    </section>
+
     <footer>
       <p class="script" style="color:var(--bg-cream);">With love</p>
       <h2 class="shimmer-gold">AISWARYA <i>&amp;</i> AMITH</h2>
@@ -521,12 +590,18 @@
 (function () {
   'use strict';
 
-  /* ================= SETTINGS ================= */
+  /* ================= SETTINGS — edit these ================= */
   var CONFIG = {
+    // Option A (recommended): Google Apps Script web-app URL. RSVPs land in a Google Sheet.
+    rsvpEndpoint: "",
+    // Option B: WhatsApp number to receive RSVPs, digits only with country code, e.g. "919XXXXXXXXX".
+    // IMPORTANT: fill in ONE of these two, otherwise RSVPs are not delivered anywhere.
+    whatsappNumber: "",
+    maxGuests: 10,
     // 11:30 AM India time, fixed offset so guests abroad see the correct countdown
     weddingStart: "2026-12-20T11:30:00+05:30"
   };
-  /* ============================================ */
+  /* ========================================================== */
 
   var $ = function (id) { return document.getElementById(id); };
 
@@ -675,6 +750,57 @@
   }
   canvas.addEventListener('click', reveal);
   canvas.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); } });
+
+  /* ---------- RSVP ---------- */
+  function showPanel(id) {
+    document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); });
+    $(id).classList.add('active');
+  }
+  document.querySelectorAll('[data-panel]').forEach(function (b) {
+    b.addEventListener('click', function () { showPanel(b.getAttribute('data-panel')); });
+  });
+
+  var count = $('rsvpCount');
+  count.max = CONFIG.maxGuests;
+  $('guestMinus').addEventListener('click', function () { var v = parseInt(count.value, 10) || 1; if (v > 1) count.value = v - 1; });
+  $('guestPlus').addEventListener('click', function () { var v = parseInt(count.value, 10) || 1; if (v < CONFIG.maxGuests) count.value = v + 1; });
+
+  var nameInput = $('guestName');
+  nameInput.addEventListener('input', function () { nameInput.classList.remove('invalid'); $('nameError').textContent = ''; });
+
+  $('rsvpForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = nameInput.value.trim().replace(/\s+/g, ' ');
+    var guests = parseInt(count.value, 10) || 1;
+    $('sendError').textContent = '';
+
+    if (!name) {
+      nameInput.classList.add('invalid');
+      $('nameError').textContent = 'Please enter your name.';
+      nameInput.focus();
+      return;
+    }
+
+    var btn = $('btnConfirmRSVP');
+    var payload = { name: name, guests: guests, attending: 'Yes' };
+
+    if (CONFIG.rsvpEndpoint) {
+      btn.disabled = true; btn.textContent = 'Sending…';
+      // text/plain avoids a CORS preflight (Apps Script can't answer one)
+      fetch(CONFIG.rsvpEndpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+        .then(function () { showPanel('panel-confirmed'); })
+        .catch(function () { $('sendError').textContent = 'Could not send. Please check your connection and try again.'; })
+        .then(function () { btn.disabled = false; btn.textContent = 'Confirm RSVP'; });
+    } else if (CONFIG.whatsappNumber) {
+      var msg = 'Hi! This is ' + name + '. I will be attending the wedding of Aiswarya & Amith on 20 December 2026. Number of guests: ' + guests + '.';
+      window.open('https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+      showPanel('panel-confirmed');
+    } else {
+      // No destination configured yet: nothing is actually delivered.
+      console.warn('RSVP not delivered: set CONFIG.rsvpEndpoint or CONFIG.whatsappNumber in index.html');
+      showPanel('panel-confirmed');
+    }
+  });
 })();
 </script>
 </body>
